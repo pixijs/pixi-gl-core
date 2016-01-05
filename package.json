@@ -1,0 +1,24 @@
+{
+  "name": "pixi-gl-core",
+  "version": "0.1.0",
+  "description": "A set of tidy little classes that make working with WebGL simpler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoodBoyDigital/pixi-gl-core.git"
+  },
+  "keywords": [
+    "Pixi",
+    "WebGL",
+    "Shader"
+  ],
+  "author": "Mathew Groves (@Doormat23)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoodBoyDigital/pixi-gl-core/issues"
+  },
+  "homepage": "https://github.com/GoodBoyDigital/pixi-gl-core#readme"
+}
