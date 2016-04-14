@@ -4,7 +4,7 @@
   "description": "A set of tidy little classes that make working with WebGL simpler",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/GoodBoyDigital/pixi-gl-core/issues"
   },
-  "homepage": "https://github.com/GoodBoyDigital/pixi-gl-core#readme"
+  "homepage": "https://github.com/GoodBoyDigital/pixi-gl-core#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0"
+  }
 }
