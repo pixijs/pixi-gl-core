@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: GLTexture.js</title>
+    
+    
+    
+    
+    
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":false,"cleverLinks":false,"default":{"outputSourceFiles":true},"applicationName":"pixi-gl-core","footer":"Made with ♥ by <a href='http://goodboydigital.com'>Goodboy Digital</a>","copyright":"PIXI Copyright © 2013-2016 Mat Groves.","disqus":"","googleAnalytics":"","openGraph":{"title":"","type":"website","image":"","site_name":"","url":""},"meta":{"title":"","description":"","keyword":""},"linenums":true};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html">pixi-gl-core</a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <li class="item" data-name="pixi.gl.Buffer">
+            <span class="title">
+                <a href="pixi.gl.Buffer.html">pixi.gl.Buffer</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="pixi.gl.Buffer#buffer"><a href="pixi.gl.Buffer.html#buffer">buffer</a></li>
+            
+                <li data-name="pixi.gl.Buffer#data"><a href="pixi.gl.Buffer.html#data">data</a></li>
+            
+                <li data-name="pixi.gl.Buffer#drawType"><a href="pixi.gl.Buffer.html#drawType">drawType</a></li>
+            
+                <li data-name="pixi.gl.Buffer#gl"><a href="pixi.gl.Buffer.html#gl">gl</a></li>
+            
+                <li data-name="pixi.gl.Buffer#type"><a href="pixi.gl.Buffer.html#type">type</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="pixi.gl.Buffer#bind"><a href="pixi.gl.Buffer.html#bind">bind</a></li>
+            
+                <li data-name="pixi.gl.Buffer#destroy"><a href="pixi.gl.Buffer.html#destroy">destroy</a></li>
+            
+                <li data-name="pixi.gl.Buffer#upload"><a href="pixi.gl.Buffer.html#upload">upload</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="pixi.gl.createContext">
+            <span class="title">
+                <a href="pixi.gl.createContext.html">pixi.gl.createContext</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="pixi.gl.Framebuffer">
+            <span class="title">
+                <a href="pixi.gl.Framebuffer.html">pixi.gl.Framebuffer</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="pixi.gl.Framebuffer#framebuffer"><a href="pixi.gl.Framebuffer.html#framebuffer">framebuffer</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#gl"><a href="pixi.gl.Framebuffer.html#gl">gl</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#height"><a href="pixi.gl.Framebuffer.html#height">height</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#stencil"><a href="pixi.gl.Framebuffer.html#stencil">stencil</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#texture"><a href="pixi.gl.Framebuffer.html#texture">texture</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#width"><a href="pixi.gl.Framebuffer.html#width">width</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="pixi.gl.Framebuffer.createFloat32"><a href="pixi.gl.Framebuffer.html#.createFloat32">createFloat32</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer.createRGBA"><a href="pixi.gl.Framebuffer.html#.createRGBA">createRGBA</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#bind"><a href="pixi.gl.Framebuffer.html#bind">bind</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#clear"><a href="pixi.gl.Framebuffer.html#clear">clear</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#destroy"><a href="pixi.gl.Framebuffer.html#destroy">destroy</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#enableStencil"><a href="pixi.gl.Framebuffer.html#enableStencil">enableStencil</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#enableTexture"><a href="pixi.gl.Framebuffer.html#enableTexture">enableTexture</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#resize"><a href="pixi.gl.Framebuffer.html#resize">resize</a></li>
+            
+                <li data-name="pixi.gl.Framebuffer#unbind"><a href="pixi.gl.Framebuffer.html#unbind">unbind</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="pixi.gl.Shader">
+            <span class="title">
+                <a href="pixi.gl.Shader.html">pixi.gl.Shader</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="pixi.gl.Shader#attributes"><a href="pixi.gl.Shader.html#attributes">attributes</a></li>
+            
+                <li data-name="pixi.gl.Shader#gl"><a href="pixi.gl.Shader.html#gl">gl</a></li>
+            
+                <li data-name="pixi.gl.Shader#program"><a href="pixi.gl.Shader.html#program">program</a></li>
+            
+                <li data-name="pixi.gl.Shader#uniforms"><a href="pixi.gl.Shader.html#uniforms">uniforms</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="pixi.gl.Shader#bind"><a href="pixi.gl.Shader.html#bind">bind</a></li>
+            
+                <li data-name="pixi.gl.Shader#destroy"><a href="pixi.gl.Shader.html#destroy">destroy</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="pixi.gl.Texture">
+            <span class="title">
+                <a href="pixi.gl.Texture.html">pixi.gl.Texture</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="pixi.gl.Texture#format"><a href="pixi.gl.Texture.html#format">format</a></li>
+            
+                <li data-name="pixi.gl.Texture#gl"><a href="pixi.gl.Texture.html#gl">gl</a></li>
+            
+                <li data-name="pixi.gl.Texture#height"><a href="pixi.gl.Texture.html#height">height</a></li>
+            
+                <li data-name="pixi.gl.Texture#mipmap"><a href="pixi.gl.Texture.html#mipmap">mipmap</a></li>
+            
+                <li data-name="pixi.gl.Texture#premultiplyAlpha"><a href="pixi.gl.Texture.html#premultiplyAlpha">premultiplyAlpha</a></li>
+            
+                <li data-name="pixi.gl.Texture#texture"><a href="pixi.gl.Texture.html#texture">texture</a></li>
+            
+                <li data-name="pixi.gl.Texture#type"><a href="pixi.gl.Texture.html#type">type</a></li>
+            
+                <li data-name="pixi.gl.Texture#width"><a href="pixi.gl.Texture.html#width">width</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="pixi.gl.Texture.fromData"><a href="pixi.gl.Texture.html#.fromData">fromData</a></li>
+            
+                <li data-name="pixi.gl.Texture.fromSource"><a href="pixi.gl.Texture.html#.fromSource">fromSource</a></li>
+            
+                <li data-name="pixi.gl.Texture#bind"><a href="pixi.gl.Texture.html#bind">bind</a></li>
+            
+                <li data-name="pixi.gl.Texture#destroy"><a href="pixi.gl.Texture.html#destroy">destroy</a></li>
+            
+                <li data-name="pixi.gl.Texture#enableLinearScaling"><a href="pixi.gl.Texture.html#enableLinearScaling">enableLinearScaling</a></li>
+            
+                <li data-name="pixi.gl.Texture#enableMipmap"><a href="pixi.gl.Texture.html#enableMipmap">enableMipmap</a></li>
+            
+                <li data-name="pixi.gl.Texture#enableNearestScaling"><a href="pixi.gl.Texture.html#enableNearestScaling">enableNearestScaling</a></li>
+            
+                <li data-name="pixi.gl.Texture#enableWrapClamp"><a href="pixi.gl.Texture.html#enableWrapClamp">enableWrapClamp</a></li>
+            
+                <li data-name="pixi.gl.Texture#enableWrapRepeat"><a href="pixi.gl.Texture.html#enableWrapRepeat">enableWrapRepeat</a></li>
+            
+                <li data-name="pixi.gl.Texture#magFilter"><a href="pixi.gl.Texture.html#magFilter">magFilter</a></li>
+            
+                <li data-name="pixi.gl.Texture#minFilter"><a href="pixi.gl.Texture.html#minFilter">minFilter</a></li>
+            
+                <li data-name="pixi.gl.Texture#unbind"><a href="pixi.gl.Texture.html#unbind">unbind</a></li>
+            
+                <li data-name="pixi.gl.Texture#upload"><a href="pixi.gl.Texture.html#upload">upload</a></li>
+            
+                <li data-name="pixi.gl.Texture#uploadData"><a href="pixi.gl.Texture.html#uploadData">uploadData</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="pixi.gl.VertexArrayObject">
+            <span class="title">
+                <a href="pixi.gl.VertexArrayObject.html">pixi.gl.VertexArrayObject</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="pixi.gl.VertexArrayObject.FORCE_NATIVE"><a href="pixi.gl.VertexArrayObject.html#.FORCE_NATIVE">FORCE_NATIVE</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#attributes"><a href="pixi.gl.VertexArrayObject.html#attributes">attributes</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#dirty"><a href="pixi.gl.VertexArrayObject.html#dirty">dirty</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#gl"><a href="pixi.gl.VertexArrayObject.html#gl">gl</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#indexBuffer"><a href="pixi.gl.VertexArrayObject.html#indexBuffer">indexBuffer</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="pixi.gl.VertexArrayObject#activate"><a href="pixi.gl.VertexArrayObject.html#activate">activate</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#addAttribute"><a href="pixi.gl.VertexArrayObject.html#addAttribute">addAttribute</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#addIndex"><a href="pixi.gl.VertexArrayObject.html#addIndex">addIndex</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#bind"><a href="pixi.gl.VertexArrayObject.html#bind">bind</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#clear"><a href="pixi.gl.VertexArrayObject.html#clear">clear</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#destroy"><a href="pixi.gl.VertexArrayObject.html#destroy">destroy</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#draw"><a href="pixi.gl.VertexArrayObject.html#draw">draw</a></li>
+            
+                <li data-name="pixi.gl.VertexArrayObject#unbind"><a href="pixi.gl.VertexArrayObject.html#unbind">unbind</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="GLTexture.js.html">Source: GLTexture.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * Helper class to create a WebGL Texture
+ *
+ * @class
+ * @memberof pixi.gl
+ * @param gl {WebGLRenderingContext} The current WebGL context
+ * @param width {number} the width of the texture
+ * @param height {number} the height of the texture
+ * @param format {number} the pixel format of the texture. defaults to gl.RGBA
+ * @param type {number} the gl type of the texture. defaults to gl.UNSIGNED_BYTE
+ */
+var Texture = function(gl, width, height, format, type)
+{
+	/**
+	 * The current WebGL rendering context
+	 *
+	 * @member {WebGLRenderingContext}
+	 */
+	this.gl = gl;
+
+
+	/**
+	 * The WebGL texture
+	 *
+	 * @member {WebGLTexture}
+	 */
+	this.texture = gl.createTexture();
+
+	/**
+	 * If mipmapping was used for this texture, enable and disable with enableMipmap()
+	 *
+	 * @member {Boolean}
+	 */
+	// some settings..
+	this.mipmap = false;
+
+
+	/**
+	 * Set to true to enable pre-multiplied alpha
+	 *
+	 * @member {Boolean}
+	 */
+	this.premultiplyAlpha = false;
+
+	/**
+	 * The width of texture
+	 *
+	 * @member {Number}
+	 */
+	this.width = width || 0;
+	/**
+	 * The height of texture
+	 *
+	 * @member {Number}
+	 */
+	this.height = height || 0;
+
+	/**
+	 * The pixel format of the texture. defaults to gl.RGBA
+	 *
+	 * @member {Number}
+	 */
+	this.format = format || gl.RGBA;
+
+	/**
+	 * The gl type of the texture. defaults to gl.UNSIGNED_BYTE
+	 *
+	 * @member {Number}
+	 */
+	this.type = type || gl.UNSIGNED_BYTE;
+
+
+};
+
+/**
+ * Uploads this texture to the GPU
+ * @param source {HTMLImageElement|ImageData|HTMLVideoElement} the source image of the texture
+ */
+Texture.prototype.upload = function(source)
+{
+	this.bind();
+
+	var gl = this.gl;
+
+	// if the source is a video, we need to use the videoWidth / videoHeight properties as width / height will be incorrect.
+	this.width = source.videoWidth || source.width;
+	this.height = source.videoHeight || source.height;
+
+	gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, this.premultiplyAlpha);
+    gl.texImage2D(gl.TEXTURE_2D, 0, this.format, this.format, this.type, source);
+};
+
+var FLOATING_POINT_AVAILABLE = false;
+
+/**
+ * Use a data source and uploads this texture to the GPU
+ * @param data {TypedArray} the data to upload to the texture
+ * @param width {number} the new width of the texture
+ * @param height {number} the new height of the texture
+ */
+Texture.prototype.uploadData = function(data, width, height)
+{
+	this.bind();
+
+	var gl = this.gl;
+
+	this.width = width || this.width;
+	this.height = height || this.height;
+
+	if(data instanceof Float32Array)
+	{
+		if(!FLOATING_POINT_AVAILABLE)
+		{
+			var ext = gl.getExtension("OES_texture_float");
+
+			if(ext)
+			{
+				FLOATING_POINT_AVAILABLE = true;
+			}
+			else
+			{
+				throw new Error('floating point textures not available');
+			}
+		}
+
+		this.type = gl.FLOAT;
+	}
+	else
+	{
+		// TODO support for other types
+		this.type = gl.UNSIGNED_BYTE;
+	}
+
+	
+
+	// what type of data?
+	gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, this.premultiplyAlpha);
+	gl.texImage2D(gl.TEXTURE_2D, 0, this.format,  this.width, this.height, 0, this.format, this.type, data || null);
+
+};
+
+/**
+ * Binds the texture
+ * @param  location 
+ */
+Texture.prototype.bind = function(location)
+{
+	var gl = this.gl;
+
+	if(location !== undefined)
+	{
+		gl.activeTexture(gl.TEXTURE0 + location);
+	}
+
+	gl.bindTexture(gl.TEXTURE_2D, this.texture);
+};
+
+/**
+ * Unbinds the texture
+ */
+Texture.prototype.unbind = function()
+{
+	var gl = this.gl;
+	gl.bindTexture(gl.TEXTURE_2D, null);
+};
+
+/**
+ * @param linear {Boolean} if we want to use linear filtering or nearest neighbour interpolation
+ */
+Texture.prototype.minFilter = function( linear )
+{
+	var gl = this.gl;
+
+	this.bind();
+
+	if(this.mipmap)
+	{
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, linear ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST);
+	}
+	else
+	{
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, linear ? gl.LINEAR : gl.NEAREST);
+	}
+};
+
+/**
+ * @param linear {Boolean} if we want to use linear filtering or nearest neighbour interpolation
+ */
+Texture.prototype.magFilter = function( linear )
+{
+	var gl = this.gl;
+
+	this.bind();
+
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, linear ? gl.LINEAR : gl.NEAREST);
+};
+
+/**
+ * Enables mipmapping
+ */
+Texture.prototype.enableMipmap = function()
+{
+	var gl = this.gl;
+
+	this.bind();
+
+	this.mipmap = true;
+
+	gl.generateMipmap(gl.TEXTURE_2D);
+};
+
+/**
+ * Enables linear filtering
+ */
+Texture.prototype.enableLinearScaling = function()
+{
+	this.minFilter(true);
+	this.magFilter(true);
+};
+
+/**
+ * Enables nearest neighbour interpolation
+ */
+Texture.prototype.enableNearestScaling = function()
+{
+	this.minFilter(false);
+	this.magFilter(false);
+};
+
+/**
+ * Enables clamping on the texture so WebGL will not repeat it
+ */
+Texture.prototype.enableWrapClamp = function()
+{
+	var gl = this.gl;
+
+	this.bind();
+
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+};
+
+/**
+ * Enable tiling on the texture
+ */
+Texture.prototype.enableWrapRepeat = function()
+{
+	var gl = this.gl;
+
+	this.bind();
+
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+};
+
+Texture.prototype.enableWrapMirrorRepeat = function()
+{
+	var gl = this.gl;
+
+	this.bind();
+
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.MIRRORED_REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.MIRRORED_REPEAT);
+};
+
+
+/**
+ * Destroys this texture
+ */
+Texture.prototype.destroy = function()
+{
+	var gl = this.gl;
+	//TODO
+	gl.deleteTexture(this.texture);
+};
+
+/**
+ * @static
+ * @param gl {WebGLRenderingContext} The current WebGL context
+ * @param source {HTMLImageElement|ImageData} the source image of the texture
+ * @param premultiplyAlpha {Boolean} If we want to use pre-multiplied alpha
+ */
+Texture.fromSource = function(gl, source, premultiplyAlpha)
+{
+	var texture = new Texture(gl);
+	texture.premultiplyAlpha = premultiplyAlpha || false;
+	texture.upload(source);
+
+	return texture;
+};
+
+/**
+ * @static
+ * @param gl {WebGLRenderingContext} The current WebGL context
+ * @param data {TypedArray} the data to upload to the texture
+ * @param width {number} the new width of the texture
+ * @param height {number} the new height of the texture
+ */
+Texture.fromData = function(gl, data, width, height)
+{
+	//console.log(data, width, height);
+	var texture = new Texture(gl);
+	texture.uploadData(data, width, height);
+
+	return texture;
+};
+
+
+module.exports = Texture;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed May 25 2016 12:55:33 GMT-0400 (EDT)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
