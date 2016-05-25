@@ -1,4 +1,4 @@
-var GL_MAP = {};
+// var GL_MAP = {};
 
 /**
  * @mat

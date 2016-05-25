@@ -1,14 +1,58 @@
 {
   "name": "pixi-gl-core",
   "version": "0.1.0",
-  "description": "A set of tidy little classes that make working with WebGL simpler",
-  "main": "index.js",
+  "description": "A set of tidy little pixi objects that make working with WebGL simpler",
+  "main": "bin/pixi-gl-core.min.js",
+  "config": {
+    "watch": "src",
+    "src": "src/**.js",
+    "app": "src/index.js",
+    "debug": "pixi-gl-core.js",
+    "map": "pixi-gl-core.js.map",
+    "release": "pixi-gl-core.min.js",
+    "dest": "bin"
+  },
   "scripts": {
-    "test": "gulp test"
+    "clean": "rimraf $npm_package_config_dest",
+    "lint": "eslint $npm_package_config_src || exit 0",
+    "prebuild": "npm run clean && npm run lint && mkdirp $npm_package_config_dest",
+    "build": "npm run build:debug && npm run build:release",
+    "build:debug": "browserify $npm_package_config_app -t [preprocessify --contextFile .debug.json] --no-bundle-external --debug | exorcist $npm_package_config_dest/$npm_package_config_map > $npm_package_config_dest/$npm_package_config_debug",
+    "build:release": "browserify $npm_package_config_app -t [preprocessify --contextFile .release.json] --no-bundle-external | uglifyjs -c > $npm_package_config_dest/$npm_package_config_release",
+    "watch:lint": "watch 'npm run lint' $npm_package_config_watch || exit 0",
+    "watch:js": "watchify $npm_package_config_app -o $npm_package_config_dest/$npm_package_config_debug -t [preprocessify --contextFile .debug.json] --no-bundle-external --debug -dv",
+    "prewatch": "mkdirp $npm_package_config_dest",
+    "watch": "parallelshell 'npm run watch:js' 'npm run watch:lint'"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "rules": {
+      "no-console": 0,
+      "no-debugger": 1
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    }
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GoodBoyDigital/pixi-gl-core.git"
+    "url": "git+https://github.com/pixijs/pixi-gl-core.git"
   },
   "keywords": [
     "Pixi",
@@ -18,13 +62,22 @@
   "author": "Mathew Groves (@Doormat23)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GoodBoyDigital/pixi-gl-core/issues"
+    "url": "https://github.com/pixijs/pixi-gl-core/issues"
   },
-  "homepage": "https://github.com/GoodBoyDigital/pixi-gl-core#readme",
+  "homepage": "https://github.com/pixijs/pixi-gl-core#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-jshint": "^2.0.0",
-    "jshint": "^2.9.1",
-    "jshint-stylish": "^2.1.0"
+    "babel-preset-es2015": "latest",
+    "babelify": "latest",
+    "behaviorify": "latest",
+    "browserify": "latest",
+    "eslint": "latest",
+    "exorcist": "^0.4.0",
+    "mkdirp": "latest",
+    "parallelshell": "latest",
+    "preprocessify": "^1.0.0",
+    "rimraf": "latest",
+    "uglify-js": "latest",
+    "watch": "latest",
+    "watchify": "latest"
   }
 }
