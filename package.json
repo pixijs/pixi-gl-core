@@ -14,7 +14,7 @@
     "docs": "docs"
   },
   "scripts": {
-    "test": "eslint $npm_package_config_src",
+    "test": "eslint $npm_package_config_src || npm run build",
     "doc": "jsdoc -c .jsdoc.json -d $npm_package_config_docs || exit 0",
     "deploy": "npm run doc && gh-pages -d $npm_package_config_docs",
     "clean": "rimraf $npm_package_config_dest $npm_package_config_docs",
