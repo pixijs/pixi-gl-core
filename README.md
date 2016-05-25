@@ -55,6 +55,18 @@ To run a watch, development command.
 npm run watch
 ```
 
+To generate the documention.
+
+```bash
+npm run doc
+```
+
+To deploy the documention to the gh-pages branch:
+
+```bash
+npm run deploy
+```
+
 ## License
 
 This content is released under the [MIT License](http://opensource.org/licenses/MIT).
