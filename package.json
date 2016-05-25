@@ -60,7 +60,7 @@
     "Shader"
   ],
   "author": "Mathew Groves (@Doormat23)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/pixijs/pixi-gl-core/issues"
   },
