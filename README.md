@@ -18,12 +18,6 @@ Installing using [NPM](https://npmjs.com):
 npm install pixi-gl-core --save
 ```
 
-Installing using [Bower](http://bower.io):
-
-```bash
-bower install pixi-gl-core
-```
-
 ## Usage
 
 Including using Node:
@@ -36,7 +30,7 @@ Including in the Browser:
 
 ```html
 <canvas id="stage"></canvas>
-<script src="bower_components/pixi-gl-core/bin/pixi-gl-core.min.js"></script>
+<script src="node_modules/pixi-gl-core/bin/pixi-gl-core.min.js"></script>
 <script>
     try 
     {
