@@ -1,9 +1,9 @@
 // var GL_MAP = {};
 
 /**
- * @mat
  * @param gl {WebGLRenderingContext} The current WebGL context
- * @param attribs {[type]}
+ * @param attribs {*}
+ * @param state {*}
  */
 var setVertexAttribArrays = function (gl, attribs, state)
 {

@@ -44,15 +44,13 @@ function VertexArrayObject(gl, state)
     this.gl = gl;
 
     /**
-     * An array of attributes ? @mat
+     * An array of attributes
      *
      * @member {Array}
      */
     this.attributes = [];
 
     /**
-     * @mat
-     *
      * @member {Array}
      */
     this.indexBuffer = null;
@@ -157,9 +155,9 @@ VertexArrayObject.prototype.activate = function()
 /**
  *
  * @param buffer     {WebGLBuffer}
- * @param attribute  {[type]}
- * @param type       {[type]}
- * @param normalized {[type]}
+ * @param attribute  {*}
+ * @param type       {String}
+ * @param normalized {Boolean}
  * @param stride     {Number}
  * @param start      {Number}
  */
@@ -216,7 +214,6 @@ VertexArrayObject.prototype.clear = function()
 };
 
 /**
- * @mat
  * @param type  {Number}
  * @param size  {Number}
  * @param start {Number}

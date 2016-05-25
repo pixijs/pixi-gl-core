@@ -142,7 +142,7 @@ Texture.prototype.uploadData = function(data, width, height)
 
 /**
  * Binds the texture
- * @param  location {@mat}
+ * @param  location 
  */
 Texture.prototype.bind = function(location)
 {
@@ -166,7 +166,6 @@ Texture.prototype.unbind = function()
 };
 
 /**
- * @mat
  * @param linear {Boolean} if we want to use linear filtering or nearest neighbour interpolation
  */
 Texture.prototype.minFilter = function( linear )
@@ -186,7 +185,6 @@ Texture.prototype.minFilter = function( linear )
 };
 
 /**
- * @mat
  * @param linear {Boolean} if we want to use linear filtering or nearest neighbour interpolation
  */
 Texture.prototype.magFilter = function( linear )
@@ -256,9 +254,6 @@ Texture.prototype.enableWrapRepeat = function()
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
 };
 
-/**
- * @mat
- */
 Texture.prototype.enableWrapMirrorRepeat = function()
 {
 	var gl = this.gl;

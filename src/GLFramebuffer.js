@@ -75,7 +75,6 @@ Framebuffer.prototype.enableTexture = function(texture)
 
 /**
  * Initialises the stencil buffer
- * @mat maybe you can come up with a better explaination
  */
 Framebuffer.prototype.enableStencil = function()
 {
@@ -180,7 +179,6 @@ Framebuffer.prototype.destroy = function()
 
 /**
  * Creates a frame buffer with a texture containing the given data
- * @mat can you confirm ? :)
  * @static
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  * @param width {Number} the width of the drawing area of the frame buffer
@@ -204,7 +202,6 @@ Framebuffer.createRGBA = function(gl, width, height/*, data*/)
 
 /**
  * Creates a frame buffer with a texture containing the given data
- * @mat not sure what the difference is with the method above ?
  * @static
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  * @param width {Number} the width of the drawing area of the frame buffer

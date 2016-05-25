@@ -30,7 +30,7 @@ var Buffer = function(gl, type, data, drawType)
 	/**
      * The type of the buffer
      *
-     * @member {gl.ARRAY_BUFFER || gl.ELEMENT_ARRAY_BUFFER}
+     * @member {gl.ARRAY_BUFFER|gl.ELEMENT_ARRAY_BUFFER}
      */
 	this.type = type || gl.ARRAY_BUFFER;
 

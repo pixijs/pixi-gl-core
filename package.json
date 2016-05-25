@@ -10,10 +10,13 @@
     "debug": "pixi-gl-core.js",
     "map": "pixi-gl-core.js.map",
     "release": "pixi-gl-core.min.js",
-    "dest": "bin"
+    "dest": "bin",
+    "docs": "docs"
   },
   "scripts": {
-    "clean": "rimraf $npm_package_config_dest",
+    "doc": "jsdoc -c .jsdoc.json -d $npm_package_config_docs || exit 0",
+    "deploy": "npm run doc && gh-pages -d $npm_package_config_docs",
+    "clean": "rimraf $npm_package_config_dest $npm_package_config_docs",
     "lint": "eslint $npm_package_config_src || exit 0",
     "prebuild": "npm run clean && npm run lint && mkdirp $npm_package_config_dest",
     "build": "npm run build:debug && npm run build:release",
@@ -72,6 +75,9 @@
     "browserify": "latest",
     "eslint": "latest",
     "exorcist": "^0.4.0",
+    "gh-pages": "^0.11.0",
+    "jaguarjs-jsdoc": "0.0.1",
+    "jsdoc": "^3.4.0",
     "mkdirp": "latest",
     "parallelshell": "latest",
     "preprocessify": "^1.0.0",
