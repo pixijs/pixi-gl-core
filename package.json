@@ -2,7 +2,7 @@
   "name": "pixi-gl-core",
   "version": "1.0.0",
   "description": "A set of tidy little pixi objects that make working with WebGL simpler",
-  "main": "bin/pixi-gl-core.min.js",
+  "main": "src/index.js",
   "config": {
     "watch": "src",
     "src": "src/**.js",

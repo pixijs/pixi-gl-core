@@ -4,5 +4,4 @@ node_modules
 .jsdoc.json
 .debug.json
 .release.json
-src
 docs

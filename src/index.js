@@ -5,7 +5,8 @@ var gl = {
     GLFramebuffer:          require('./GLFramebuffer'),
     GLShader:               require('./GLShader'),
     GLTexture:              require('./GLTexture'),
-    VertexArrayObject:      require('./VertexArrayObject')
+    VertexArrayObject:      require('./VertexArrayObject'),
+    shader:                 require('./shader')
 };
 
 // Export for Node-compatible environments
