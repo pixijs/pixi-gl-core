@@ -4,6 +4,8 @@ var mapSize = require('./mapSize');
 
 /**
  * Extracts the attributes
+ * @class
+ * @memberof pixi.gl.shader
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  * @param program {WebGLProgram} The shader program to get the attributes from
  * @return attributes {Object}

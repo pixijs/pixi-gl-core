@@ -1,5 +1,9 @@
-
-
+/**
+ * @class
+ * @memberof pixi.gl.shader
+ * @param type {String}
+ * @return {Number}
+ */
 var mapSize = function(type) 
 { 
     return GLSL_TO_SIZE[type];

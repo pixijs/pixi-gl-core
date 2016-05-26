@@ -1,6 +1,7 @@
 
 /**
- *
+ * @class
+ * @memberof pixi.gl.shader
  * @param gl {WebGLRenderingContext} The current WebGL context {WebGLProgram}
  * @param vertexSrc {string|string[]} The vertex shader source as an array of strings.
  * @param fragmentSrc {string|string[]} The fragment shader source as an array of strings.
@@ -42,7 +43,7 @@ var compileProgram = function(gl, vertexSrc, fragmentSrc)
 };
 
 /**
- *
+ * @private
  * @param gl {WebGLRenderingContext} The current WebGL context {WebGLProgram}
  * @param type {Number} the type, can be either VERTEX_SHADER or FRAGMENT_SHADER
  * @param vertexSrc {string|string[]} The vertex shader source as an array of strings.

@@ -1,5 +1,9 @@
-
-
+/**
+ * @class
+ * @memberof pixi.gl.shader
+ * @param type {String} Type of value
+ * @param size {Number}
+ */
 var defaultValue = function(type, size) 
 {
     switch (type)
