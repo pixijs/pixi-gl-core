@@ -70,7 +70,7 @@ Shader.prototype.bind = function()
  */
 Shader.prototype.destroy = function()
 {
-	var gl = this.gl;
+	// var gl = this.gl;
 };
 
 module.exports = Shader;

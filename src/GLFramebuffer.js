@@ -12,46 +12,46 @@ var Texture = require('./GLTexture');
  */
 var Framebuffer = function(gl, width, height)
 {
-	/**
+    /**
      * The current WebGL rendering context
      *
      * @member {WebGLRenderingContext}
      */
-	this.gl = gl;
+    this.gl = gl;
 
-	/**
+    /**
      * The frame buffer
      *
      * @member {WebGLFramebuffer}
      */
-	this.framebuffer = gl.createFramebuffer();
+    this.framebuffer = gl.createFramebuffer();
 
-	/**
+    /**
      * The stencil buffer
      *
      * @member {WebGLRenderbuffer}
      */
-	this.stencil = null;
+    this.stencil = null;
 
-	/**
+    /**
      * The stencil buffer
      *
      * @member {GLTexture}
      */
-	this.texture = null;
+    this.texture = null;
 
-	/**
+    /**
      * The width of the drawing area of the buffer
      *
      * @member {Number}
      */
-	this.width = width || 100;
-	/**
+    this.width = width || 100;
+    /**
      * The height of the drawing area of the buffer
      *
      * @member {Number}
      */
-	this.height = height || 100;
+    this.height = height || 100;
 };
 
 /**
@@ -60,30 +60,29 @@ var Framebuffer = function(gl, width, height)
  */
 Framebuffer.prototype.enableTexture = function(texture)
 {
-	var gl = this.gl;
+    var gl = this.gl;
 
-	this.texture = texture || new Texture(gl);
+    this.texture = texture || new Texture(gl);
 
-	this.texture.bind();
+    this.texture.bind();
 
-	//gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA,  this.width, this.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+    //gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA,  this.width, this.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
 
-	this.bind();
+    this.bind();
 
-	gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.texture.texture, 0);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.texture.texture, 0);
 };
 
 /**
  * Initialises the stencil buffer
- * @mat maybe you can come up with a better explaination
  */
 Framebuffer.prototype.enableStencil = function()
 {
-	if(this.stencil)return;
+    if(this.stencil)return;
 
-	var gl = this.gl;
+    var gl = this.gl;
 
-	this.stencil = gl.createRenderbuffer();
+    this.stencil = gl.createRenderbuffer();
 
     gl.bindRenderbuffer(gl.RENDERBUFFER, this.stencil);
 
@@ -101,9 +100,9 @@ Framebuffer.prototype.enableStencil = function()
  */
 Framebuffer.prototype.clear = function( r, g, b, a )
 {
-	this.bind();
+    this.bind();
 
-	var gl = this.gl;
+    var gl = this.gl;
 
     gl.clearColor(r, g, b, a);
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -114,14 +113,14 @@ Framebuffer.prototype.clear = function( r, g, b, a )
  */
 Framebuffer.prototype.bind = function()
 {
-	var gl = this.gl;
+    var gl = this.gl;
 
-	if(this.texture)
-	{
-		this.texture.unbind();
-	}
+    if(this.texture)
+    {
+        this.texture.unbind();
+    }
 
-	gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer );
+    gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer );
 };
 
 /**
@@ -129,8 +128,8 @@ Framebuffer.prototype.bind = function()
  */
 Framebuffer.prototype.unbind = function()
 {
-	var gl = this.gl;
-	gl.bindFramebuffer(gl.FRAMEBUFFER, null );	
+    var gl = this.gl;
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null );  
 };
 /**
  * Resizes the drawing area of the buffer to the given width and height
@@ -139,17 +138,17 @@ Framebuffer.prototype.unbind = function()
  */
 Framebuffer.prototype.resize = function(width, height)
 {
-	var gl = this.gl;
+    var gl = this.gl;
 
-	this.width = width;
-	this.height = height;
+    this.width = width;
+    this.height = height;
 
-	if ( this.texture )
+    if ( this.texture )
     {
-    	this.texture.uploadData(null, width, height);
-	}
+        this.texture.uploadData(null, width, height);
+    }
 
-	if ( this.stencil )
+    if ( this.stencil )
     {
         // update the stencil buffer width and height
         gl.bindRenderbuffer(gl.RENDERBUFFER, this.stencil);
@@ -162,35 +161,34 @@ Framebuffer.prototype.resize = function(width, height)
  */
 Framebuffer.prototype.destroy = function()
 {
-	var gl = this.gl;
+    var gl = this.gl;
 
-	//TODO
-	if(this.texture)
-	{
-		this.texture.destroy();
-	}
+    //TODO
+    if(this.texture)
+    {
+        this.texture.destroy();
+    }
 
-	gl.deleteFramebuffer(this.framebuffer);
+    gl.deleteFramebuffer(this.framebuffer);
 
-	this.gl = null;
+    this.gl = null;
 
-	this.stencil = null;
-	this.texture = null;
+    this.stencil = null;
+    this.texture = null;
 };
 
 /**
  * Creates a frame buffer with a texture containing the given data
- * @mat can you confirm ? :)
  * @static
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  * @param width {Number} the width of the drawing area of the frame buffer
  * @param height {Number} the height of the drawing area of the frame buffer
  * @param data {ArrayBuffer| SharedArrayBuffer|ArrayBufferView} an array of data
  */
-Framebuffer.createRGBA = function(gl, width, height, data)
+Framebuffer.createRGBA = function(gl, width, height/*, data*/)
 {
-	var texture = Texture.fromData(gl, null, width, height);
-	texture.enableNearestScaling();
+    var texture = Texture.fromData(gl, null, width, height);
+    texture.enableNearestScaling();
     texture.enableWrapClamp();
 
     //now create the framebuffer object and attach the texture to it.
@@ -204,7 +202,6 @@ Framebuffer.createRGBA = function(gl, width, height, data)
 
 /**
  * Creates a frame buffer with a texture containing the given data
- * @mat not sure what the difference is with the method above ?
  * @static
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  * @param width {Number} the width of the drawing area of the frame buffer
@@ -213,7 +210,7 @@ Framebuffer.createRGBA = function(gl, width, height, data)
  */
 Framebuffer.createFloat32 = function(gl, width, height, data)
 {
-	// create a new texture..
+    // create a new texture..
     var texture = new Texture.fromData(gl, data, width, height);
     texture.enableNearestScaling();
     texture.enableWrapClamp();
