@@ -19,8 +19,8 @@
             "outputSourceFiles" : true
         },
         "applicationName": "pixi-gl-core",
-        "footer"        : "Made with ♥ by <a href='http://goodboydigital.com'>Goodboy Digital</a>",
-        "copyright"     : "PIXI Copyright © 2013-2016 Mat Groves.",
+        "footer"        : "Made with ♥ by Goodboy Digital",
+        "copyright"     : "PIXI Copyright &copy; 2015-2016 Mat Groves.",
         "disqus": "",
         "googleAnalytics": "",
         "openGraph": {
