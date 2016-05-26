@@ -1,6 +1,6 @@
 {
   "name": "pixi-gl-core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A set of tidy little pixi objects that make working with WebGL simpler",
   "main": "bin/pixi-gl-core.min.js",
   "config": {
