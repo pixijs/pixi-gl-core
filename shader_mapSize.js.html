@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Source: createContext.js</title>
+    <title>Source: shader/mapSize.js</title>
     
     
     
@@ -422,39 +422,49 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="createContext.js.html">Source: createContext.js</h1>
+        <h1 class="page-title" data-filename="shader_mapSize.js.html">Source: shader/mapSize.js</h1>
         
 
 
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
-/**
- * Helper class to create a webGL Context
- *
+            <pre class="prettyprint source linenums"><code>/**
  * @class
- * @memberof pixi.gl
- * @param canvas {HTMLCanvasElement} the canvas element that we will get the context from
- * @param options {Object} An options object that gets passed in to the canvas element containing the context attributes,
- *                         see https://developer.mozilla.org/en/docs/Web/API/HTMLCanvasElement/getContext for the options available
- * @return {WebGLRenderingContext} the WebGL context
+ * @memberof pixi.gl.shader
+ * @param type {String}
+ * @return {Number}
  */
-var createContext = function(canvas, options)
-{
-    var gl = canvas.getContext('webgl', options) || 
-         canvas.getContext('experimental-webgl', options);
-
-    if (!gl)
-    {
-        // fail, not able to get a context
-        throw new Error('This browser does not support webGL. Try using the canvas renderer');
-    }
-
-    return gl;
+var mapSize = function(type) 
+{ 
+    return GLSL_TO_SIZE[type];
 };
 
-module.exports = createContext;
+
+var GLSL_TO_SIZE = {
+    'float':    1,
+    'vec2':     2,
+    'vec3':     3,
+    'vec4':     4,
+
+    'int':      1,
+    'ivec2':    2,
+    'ivec3':    3,
+    'ivec4':    4,
+
+    'bool':     1,
+    'bvec2':    2,
+    'bvec3':    3,
+    'bvec4':    4,
+
+    'mat2':     4,
+    'mat3':     9,
+    'mat4':     16,
+
+    'sampler2D':  1
+};
+
+module.exports = mapSize;
 </code></pre>
         </article>
     </section>

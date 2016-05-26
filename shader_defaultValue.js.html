@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Source: createContext.js</title>
+    <title>Source: shader/defaultValue.js</title>
     
     
     
@@ -422,39 +422,91 @@
     </ul>
 </div>
     <div class="main">
-        <h1 class="page-title" data-filename="createContext.js.html">Source: createContext.js</h1>
+        <h1 class="page-title" data-filename="shader_defaultValue.js.html">Source: shader/defaultValue.js</h1>
         
 
 
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
-/**
- * Helper class to create a webGL Context
- *
+            <pre class="prettyprint source linenums"><code>/**
  * @class
- * @memberof pixi.gl
- * @param canvas {HTMLCanvasElement} the canvas element that we will get the context from
- * @param options {Object} An options object that gets passed in to the canvas element containing the context attributes,
- *                         see https://developer.mozilla.org/en/docs/Web/API/HTMLCanvasElement/getContext for the options available
- * @return {WebGLRenderingContext} the WebGL context
+ * @memberof pixi.gl.shader
+ * @param type {String} Type of value
+ * @param size {Number}
  */
-var createContext = function(canvas, options)
+var defaultValue = function(type, size) 
 {
-    var gl = canvas.getContext('webgl', options) || 
-         canvas.getContext('experimental-webgl', options);
-
-    if (!gl)
+    switch (type)
     {
-        // fail, not able to get a context
-        throw new Error('This browser does not support webGL. Try using the canvas renderer');
-    }
+        case 'float':
+            return 0;
 
-    return gl;
+        case 'vec2': 
+            return new Float32Array(2 * size);
+
+        case 'vec3':
+            return new Float32Array(3 * size);
+
+        case 'vec4':     
+            return new Float32Array(4 * size);
+            
+        case 'int':
+        case 'sampler2D':
+            return 0;
+
+        case 'ivec2':   
+            return new Int32Array(2 * size);
+
+        case 'ivec3':
+            return new Int32Array(3 * size);
+
+        case 'ivec4': 
+            return new Int32Array(4 * size);
+
+        case 'bool':     
+            return false;
+
+        case 'bvec2':
+
+            return booleanArray( 2 * size);
+
+        case 'bvec3':
+            return booleanArray(3 * size);
+
+        case 'bvec4':
+            return booleanArray(4 * size);
+
+        case 'mat2':
+            return new Float32Array([1, 0,
+                                     0, 1]);
+
+        case 'mat3': 
+            return new Float32Array([1, 0, 0,
+                                     0, 1, 0,
+                                     0, 0, 1]);
+
+        case 'mat4':
+            return new Float32Array([1, 0, 0, 0,
+                                     0, 1, 0, 0,
+                                     0, 0, 1, 0,
+                                     0, 0, 0, 1]);
+    }
 };
 
-module.exports = createContext;
+var booleanArray = function(size)
+{
+    var array = new Array(size);
+
+    for (var i = 0; i &lt; array.length; i++) 
+    {
+        array[i] = false;
+    }
+
+    return array;
+};
+
+module.exports = defaultValue;
 </code></pre>
         </article>
     </section>
