@@ -5,7 +5,7 @@ var Texture = require('./GLTexture');
  * Helper class to create a webGL Framebuffer
  *
  * @class
- * @memberof pixi.gl
+ * @memberof PIXI.glCore
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  * @param width {Number} the width of the drawing area of the frame buffer
  * @param height {Number} the height of the drawing area of the frame buffer
@@ -36,7 +36,7 @@ var Framebuffer = function(gl, width, height)
     /**
      * The stencil buffer
      *
-     * @member {GLTexture}
+     * @member {PIXI.glCore.GLTexture}
      */
     this.texture = null;
 
@@ -56,7 +56,7 @@ var Framebuffer = function(gl, width, height)
 
 /**
  * Adds a texture to the frame buffer
- * @param texture {GLTexture}
+ * @param texture {PIXI.glCore.GLTexture}
  */
 Framebuffer.prototype.enableTexture = function(texture)
 {

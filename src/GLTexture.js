@@ -3,7 +3,7 @@
  * Helper class to create a WebGL Texture
  *
  * @class
- * @memberof pixi.gl
+ * @memberof PIXI.glCore
  * @param gl {WebGLRenderingContext} The current WebGL context
  * @param width {number} the width of the texture
  * @param height {number} the height of the texture

@@ -7,7 +7,7 @@ var setVertexAttribArrays = require( './setVertexAttribArrays' );
  * Only works if WebGL extensions are enabled (they usually are)
  *
  * @class
- * @memberof pixi.gl
+ * @memberof PIXI.glCore
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  */
 function VertexArrayObject(gl, state)
@@ -51,7 +51,7 @@ function VertexArrayObject(gl, state)
     this.attributes = [];
 
     /**
-     * @member {Array}
+     * @member {PIXI.glCore.GLBuffer}
      */
     this.indexBuffer = null;
 
@@ -154,7 +154,7 @@ VertexArrayObject.prototype.activate = function()
 
 /**
  *
- * @param buffer     {WebGLBuffer}
+ * @param buffer     {PIXI.gl.GLBuffer}
  * @param attribute  {*}
  * @param type       {String}
  * @param normalized {Boolean}
@@ -181,8 +181,7 @@ VertexArrayObject.prototype.addAttribute = function(buffer, attribute, type, nor
 
 /**
  *
- * @param buffer   {WebGLBuffer}
- * @param options  {Object}
+ * @param buffer   {PIXI.gl.GLBuffer}
  */
 VertexArrayObject.prototype.addIndex = function(buffer/*, options*/)
 {
