@@ -8,7 +8,7 @@ var compileProgram = require('./shader/compileProgram'),
  * Helper class to create a webGL Shader
  *
  * @class
- * @memberof pixi.gl
+ * @memberof PIXI.glCore
  * @param gl {WebGLRenderingContext}
  * @param vertexSrc {string|string[]} The vertex shader source as an array of strings.
  * @param fragmentSrc {string|string[]} The fragment shader source as an array of strings.

@@ -4,7 +4,7 @@ var EMPTY_ARRAY_BUFFER = new ArrayBuffer(0);
  * Helper class to create a webGL buffer
  *
  * @class
- * @memberof pixi.gl
+ * @memberof PIXI.glCore
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  * @param type {gl.ARRAY_BUFFER | gl.ELEMENT_ARRAY_BUFFER} @mat
  * @param data {ArrayBuffer| SharedArrayBuffer|ArrayBufferView} an array of data
@@ -25,7 +25,7 @@ var Buffer = function(gl, type, data, drawType)
      *
      * @member {WebGLBuffer}
      */
-	this.buffer = gl.createBuffer();
+	this.buffer = gl.createBuffer(); 
 
 	/**
      * The type of the buffer
@@ -103,7 +103,7 @@ Buffer.createIndexBuffer = function(gl, data, drawType)
 
 Buffer.create = function(gl, type, data, drawType)
 {
-	return new Buffer(gl, type, drawType);
+	return new Buffer(gl, type, data, drawType);
 };
 
 /**
