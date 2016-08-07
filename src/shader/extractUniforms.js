@@ -3,6 +3,8 @@ var defaultValue = require('./defaultValue');
 
 /**
  * Extracts the uniforms
+ * @class
+ * @memberof pixi.gl.shader
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  * @param program {WebGLProgram} The shader program to get the uniforms from
  * @return uniforms {Object}

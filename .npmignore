@@ -1,4 +1,7 @@
 node_modules
-gulpfile.js
 .gitignore
 .travis.yml
+.jsdoc.json
+.debug.json
+.release.json
+docs

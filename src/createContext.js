@@ -12,7 +12,7 @@
 var createContext = function(canvas, options)
 {
     var gl = canvas.getContext('webgl', options) || 
-    	 canvas.getContext('experimental-webgl', options);
+         canvas.getContext('experimental-webgl', options);
 
     if (!gl)
     {

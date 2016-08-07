@@ -1,5 +1,7 @@
 /**
  * Extracts the attributes
+ * @class
+ * @memberof pixi.gl.shader
  * @param gl {WebGLRenderingContext} The current WebGL rendering context
  * @param uniforms {Array} @mat ?
  * @return attributes {Object}
