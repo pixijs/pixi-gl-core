@@ -3,7 +3,7 @@
  * Helper class to create a webGL Context
  *
  * @class
- * @memberof pixi.gl
+ * @memberof PIXI.glCore
  * @param canvas {HTMLCanvasElement} the canvas element that we will get the context from
  * @param options {Object} An options object that gets passed in to the canvas element containing the context attributes,
  *                         see https://developer.mozilla.org/en/docs/Web/API/HTMLCanvasElement/getContext for the options available
