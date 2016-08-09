@@ -20,5 +20,5 @@ if (typeof module !== 'undefined' && module.exports)
 if (typeof window !== 'undefined')
 {
     // add the window object
-    window.pixi = { gl: gl };
+    window.PIXI = { glCore: gl };
 }
