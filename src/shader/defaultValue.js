@@ -1,6 +1,6 @@
 /**
  * @class
- * @memberof pixi.gl.shader
+ * @memberof PIXI.glCore.shader
  * @param type {String} Type of value
  * @param size {Number}
  */
