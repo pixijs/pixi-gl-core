@@ -13,7 +13,9 @@
     "lint": "jshint --reporter=scripts/reporter.js scripts src",
     "prebuild": "npm run lint && npm run clean",
     "build": "pixify --name pixi-gl-core",
-    "docs": "jsdoc -c scripts/jsdoc.conf.json -R README.md"
+    "docs": "jsdoc -c scripts/jsdoc.conf.json -R README.md",
+    "predeploy": "npm run docs",
+    "deploy": "gh-pages -d docs"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "browserify-versionify": "^1.0.6",
     "chai": "^3.5.0",
     "del": "^2.2.0",
+    "gh-pages": "^0.11.0",
     "jaguarjs-jsdoc": "^1.0.0",
     "jsdoc": "^3.4.0",
     "jshint": "^2.9.2",

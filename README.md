@@ -1,4 +1,4 @@
-# pixi-gl-core
+# PIXI GL Core
 
 [![Build Status](https://travis-ci.org/pixijs/pixi-gl-core.svg?branch=master)](https://travis-ci.org/pixijs/pixi-gl-core)
 
@@ -66,6 +66,10 @@ To deploy the documention to the gh-pages branch:
 ```bash
 npm run deploy
 ```
+
+## Documentation
+
+The API documentation can be found [here](http://pixijs.github.io/pixi-gl-core/).
 
 ## License
 

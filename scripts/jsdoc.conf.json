@@ -6,9 +6,6 @@
         "include": [
             "./src/"
         ],
-        "exclude": [
-            "./src/polyfill/"
-        ],
         "includePattern": ".+\\.js(doc)?$",
         "excludePattern": "(^|\\/|\\\\)_"
     },
@@ -21,7 +18,7 @@
         "default"       : {
             "outputSourceFiles" : true
         },
-        "applicationName": "PIXI",
+        "applicationName": "PIXI GL Core",
         "footer"        : "Made with ♥ by <a href='http://goodboydigital.com'>Goodboy Digital</a>",
         "copyright"     : "PIXI Copyright © 2013-2016 Mat Groves.",
         "disqus": "",
