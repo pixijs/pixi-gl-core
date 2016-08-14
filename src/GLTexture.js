@@ -48,13 +48,13 @@ var Texture = function(gl, width, height, format, type)
 	 *
 	 * @member {Number}
 	 */
-	this.width = width || 0;
+	this.width = width || -1;
 	/**
 	 * The height of texture
 	 *
 	 * @member {Number}
 	 */
-	this.height = height || 0;
+	this.height = height || -1;
 
 	/**
 	 * The pixel format of the texture. defaults to gl.RGBA
