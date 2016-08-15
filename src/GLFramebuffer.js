@@ -129,7 +129,7 @@ Framebuffer.prototype.bind = function()
 Framebuffer.prototype.unbind = function()
 {
     var gl = this.gl;
-    gl.bindFramebuffer(gl.FRAMEBUFFER, null );  
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null );
 };
 /**
  * Resizes the drawing area of the buffer to the given width and height
@@ -185,7 +185,7 @@ Framebuffer.prototype.destroy = function()
  * @param height {Number} the height of the drawing area of the frame buffer
  * @param data {ArrayBuffer| SharedArrayBuffer|ArrayBufferView} an array of data
  */
-Framebuffer.createRGBA = function(gl, width, height/*, data*/)
+Framebuffer.createRGBA = function(gl, width, height, data)
 {
     var texture = Texture.fromData(gl, null, width, height);
     texture.enableNearestScaling();
