@@ -100,8 +100,6 @@ Framebuffer.prototype.enableStencil = function()
  */
 Framebuffer.prototype.clear = function( r, g, b, a )
 {
-    this.bind();
-
     var gl = this.gl;
 
     gl.clearColor(r, g, b, a);
