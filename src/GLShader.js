@@ -13,7 +13,7 @@ var compileProgram = require('./shader/compileProgram'),
  * @param vertexSrc {string|string[]} The vertex shader source as an array of strings.
  * @param fragmentSrc {string|string[]} The fragment shader source as an array of strings.
  */
-var Shader = function(gl, vertexSrc, fragmentSrc)
+var Shader = function(gl, vertexSrc, fragmentSrc, attributeLocations)
 {
 	/**
 	 * The current WebGL rendering context
@@ -28,7 +28,7 @@ var Shader = function(gl, vertexSrc, fragmentSrc)
 	 * @member {WebGLProgram}
 	 */
 	// First compile the program..
-	this.program = compileProgram(gl, vertexSrc, fragmentSrc);
+	this.program = compileProgram(gl, vertexSrc, fragmentSrc, attributeLocations);
 
 
 	/**
@@ -43,6 +43,13 @@ var Shader = function(gl, vertexSrc, fragmentSrc)
 	 */
 	// next extract the attributes
 	this.attributes = extractAttributes(gl, this.program);
+
+	for(var i in this.attributes)
+	{
+		console.log(i + " : " + this.attributes[i].location)
+	}
+
+	console.log(">>>>>>>");
 
     var uniformData = extractUniforms(gl, this.program);
 

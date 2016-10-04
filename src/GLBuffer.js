@@ -25,7 +25,7 @@ var Buffer = function(gl, type, data, drawType)
      *
      * @member {WebGLBuffer}
      */
-	this.buffer = gl.createBuffer(); 
+	this.buffer = gl.createBuffer();
 
 	/**
      * The type of the buffer
@@ -52,6 +52,8 @@ var Buffer = function(gl, type, data, drawType)
 	{
 		this.upload(data);
 	}
+
+	this._updateID = 0;
 };
 
 /**

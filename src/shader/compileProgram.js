@@ -5,9 +5,10 @@
  * @param gl {WebGLRenderingContext} The current WebGL context {WebGLProgram}
  * @param vertexSrc {string|string[]} The vertex shader source as an array of strings.
  * @param fragmentSrc {string|string[]} The fragment shader source as an array of strings.
+ * @param attributeLocations {Object} An attribute location map that lets you manually set the attribute locations
  * @return {WebGLProgram} the shader program
  */
-var compileProgram = function(gl, vertexSrc, fragmentSrc)
+var compileProgram = function(gl, vertexSrc, fragmentSrc, attributeLocations)
 {
     var glVertShader = compileShader(gl, gl.VERTEX_SHADER, vertexSrc);
     var glFragShader = compileShader(gl, gl.FRAGMENT_SHADER, fragmentSrc);
@@ -16,6 +17,17 @@ var compileProgram = function(gl, vertexSrc, fragmentSrc)
 
     gl.attachShader(program, glVertShader);
     gl.attachShader(program, glFragShader);
+
+    // optionally, set the attributes manually for the program rather than letting WebGL decide..
+    if(attributeLocations)
+    {
+        for(var i in attributeLocations)
+        {
+            gl.bindAttribLocation(program, attributeLocations[i], i)
+        }
+    }
+
+
     gl.linkProgram(program);
 
     // if linking fails, then log and cleanup
