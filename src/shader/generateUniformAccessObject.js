@@ -1,4 +1,11 @@
-
+/**
+ * Extracts the attributes
+ * @class
+ * @memberof PIXI.glCore.shader
+ * @param gl {WebGLRenderingContext} The current WebGL rendering context
+ * @param uniforms {Array} @mat ?
+ * @return attributes {Object}
+ */
 var generateUniformAccessObject = function(gl, uniformData)
 {
     // this is the object we will be sending back.
@@ -6,12 +13,12 @@ var generateUniformAccessObject = function(gl, uniformData)
     var uniforms = {data:{}};
 
     uniforms.gl = gl;
-    
+
     var uniformKeys= Object.keys(uniformData);
 
-    for (var i = 0; i < uniformKeys.length; i++) 
+    for (var i = 0; i < uniformKeys.length; i++)
     {
-        var fullName = uniformKeys[i]
+        var fullName = uniformKeys[i];
 
         var nameTokens = fullName.split('.');
         var name = nameTokens[nameTokens.length - 1];
@@ -26,23 +33,23 @@ var generateUniformAccessObject = function(gl, uniformData)
         Object.defineProperty(uniformGroup, name, {
             get: generateGetter(name),
             set: generateSetter(name, uniform)
-        })
-    };
+        });
+    }
 
     return uniforms;
-}
+};
 
 var generateGetter = function(name)
 {
 	var template = getterTemplate.replace('%%', name);
-	return new Function(template);
-}
+	return new Function(template); // jshint ignore:line
+};
 
 var generateSetter = function(name, uniform)
 {
     var template = setterTemplate.replace(/%%/g, name);
-    var setTemplate
-    
+    var setTemplate;
+
     if(uniform.size === 1)
     {
         setTemplate = GLSL_TO_SINGLE_SETTERS[uniform.type];
@@ -57,22 +64,22 @@ var generateSetter = function(name, uniform)
         template += "\nthis.gl." + setTemplate + ";";
     }
 
-  	return new Function('value', template);
-}
+  	return new Function('value', template); // jshint ignore:line
+};
 
 var getUniformGroup = function(nameTokens, uniform)
 {
     var cur = uniform;
 
-    for (var i = 0; i < nameTokens.length - 1; i++) 
+    for (var i = 0; i < nameTokens.length - 1; i++)
     {
         var o = cur[nameTokens[i]] || {data:{}};
         cur[nameTokens[i]] = o;
         cur = o;
-    };
+    }
 
-    return cur
-}
+    return cur;
+};
 
 var getterTemplate = [
     'return this.data.%%.value;',
@@ -91,7 +98,7 @@ var GLSL_TO_SINGLE_SETTERS = {
     'vec2':     'uniform2f(location, value[0], value[1])',
     'vec3':     'uniform3f(location, value[0], value[1], value[2])',
     'vec4':     'uniform4f(location, value[0], value[1], value[2], value[3])',
-    	
+
     'int':      'uniform1i(location, value)',
     'ivec2':    'uniform2i(location, value[0], value[1])',
     'ivec3':    'uniform3i(location, value[0], value[1], value[2])',
@@ -107,7 +114,7 @@ var GLSL_TO_SINGLE_SETTERS = {
     'mat4':     'uniformMatrix4fv(location, false, value)',
 
     'sampler2D':'uniform1i(location, value)'
-}
+};
 
 var GLSL_TO_ARRAY_SETTERS = {
 
@@ -116,7 +123,7 @@ var GLSL_TO_ARRAY_SETTERS = {
     'vec2':     'uniform2fv(location, value)',
     'vec3':     'uniform3fv(location, value)',
     'vec4':     'uniform4fv(location, value)',
-    	
+
     'int':      'uniform1iv(location, value)',
     'ivec2':    'uniform2iv(location, value)',
     'ivec3':    'uniform3iv(location, value)',
@@ -126,9 +133,8 @@ var GLSL_TO_ARRAY_SETTERS = {
     'bvec2':    'uniform2iv(location, value)',
     'bvec3':    'uniform3iv(location, value)',
     'bvec4':    'uniform4iv(location, value)',
-   
+
     'sampler2D':'uniform1iv(location, value)'
-}
+};
 
 module.exports = generateUniformAccessObject;
-

@@ -16,7 +16,7 @@ var mapSize = function(gl, type)
     }
 
   return GL_TABLE[type];
-}
+};
 
 var GL_TABLE = null;
 
@@ -41,6 +41,6 @@ var GL_TO_GLSL_TYPES = {
   'FLOAT_MAT4':  'mat4',
   
   'SAMPLER_2D':  'sampler2D'  
-}
+};
 
 module.exports = mapSize;

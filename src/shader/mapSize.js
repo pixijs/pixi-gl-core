@@ -1,9 +1,13 @@
-
-
+/**
+ * @class
+ * @memberof PIXI.glCore.shader
+ * @param type {String}
+ * @return {Number}
+ */
 var mapSize = function(type) 
 { 
     return GLSL_TO_SIZE[type];
-}
+};
 
 
 var GLSL_TO_SIZE = {
@@ -27,6 +31,6 @@ var GLSL_TO_SIZE = {
     'mat4':     16,
 
     'sampler2D':  1
-}
+};
 
 module.exports = mapSize;

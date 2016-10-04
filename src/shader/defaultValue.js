@@ -1,5 +1,9 @@
-
-
+/**
+ * @class
+ * @memberof PIXI.glCore.shader
+ * @param type {String} Type of value
+ * @param size {Number}
+ */
 var defaultValue = function(type, size) 
 {
     switch (type)
@@ -43,21 +47,21 @@ var defaultValue = function(type, size)
             return booleanArray(4 * size);
 
         case 'mat2':
-            return new Float32Array([1, 0
-                                    ,0, 1]);
+            return new Float32Array([1, 0,
+                                     0, 1]);
 
         case 'mat3': 
-            return new Float32Array([1, 0, 0
-                                    ,0, 1, 0
-                                    ,0, 0, 1]);
+            return new Float32Array([1, 0, 0,
+                                     0, 1, 0,
+                                     0, 0, 1]);
 
         case 'mat4':
-            return new Float32Array([1, 0, 0, 0
-                                    ,0, 1, 0, 0
-                                    ,0, 0, 1, 0
-                                    ,0, 0, 0, 1]);
+            return new Float32Array([1, 0, 0, 0,
+                                     0, 1, 0, 0,
+                                     0, 0, 1, 0,
+                                     0, 0, 0, 1]);
     }
-}
+};
 
 var booleanArray = function(size)
 {
@@ -66,9 +70,9 @@ var booleanArray = function(size)
     for (var i = 0; i < array.length; i++) 
     {
         array[i] = false;
-    };
+    }
 
     return array;
-}
+};
 
 module.exports = defaultValue;

@@ -1,0 +1,7 @@
+node_modules
+.gitignore
+.travis.yml
+.jsdoc.json
+.debug.json
+.release.json
+docs
