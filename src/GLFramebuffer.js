@@ -114,12 +114,6 @@ Framebuffer.prototype.clear = function( r, g, b, a )
 Framebuffer.prototype.bind = function()
 {
     var gl = this.gl;
-
-    if(this.texture)
-    {
-        this.texture.unbind();
-    }
-
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer );
 };
 
