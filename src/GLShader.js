@@ -29,7 +29,7 @@ var Shader = function(gl, vertexSrc, fragmentSrc, locationMapping)
      * @member {WebGLProgram}
      */
     // First compile the program..
-    this.program = compileProgram(gl, vertexSrc, fragmentSrc);
+    this.program = compileProgram(gl, vertexSrc, fragmentSrc, locationMapping);
 
 
     /**
@@ -43,9 +43,9 @@ var Shader = function(gl, vertexSrc, fragmentSrc, locationMapping)
      * @member {Object}
      */
     // next extract the attributes
-    this.attributes = extractAttributes(gl, this.program, locationMapping);
+    this.attributes = extractAttributes(gl, this.program);
 
-    var uniformData = extractUniforms(gl, this.program, locationMapping);
+    var uniformData = extractUniforms(gl, this.program);
 
     /**
      * The uniforms of the shader as an object containing the following properties

@@ -10,7 +10,7 @@ var mapSize = require('./mapSize');
  * @param program {WebGLProgram} The shader program to get the attributes from
  * @return attributes {Object}
  */
-var extractAttributes = function(gl, program, locationMapping)
+var extractAttributes = function(gl, program)
 {
     var attributes = {};
 
@@ -19,24 +19,12 @@ var extractAttributes = function(gl, program, locationMapping)
     for (var i = 0; i < totalAttributes; i++)
     {
         var attribData = gl.getActiveAttrib(program, i);
-        var name = attribData.name;
         var type = mapType(gl, attribData.type);
 
-        var location;
-        if (locationMapping && (name in locationMapping))
-        {
-            location = locationMapping[name];
-            gl.bindAttribLocation(program, location, name);
-        }
-        else
-        {
-            location = gl.getAttribLocation(program, name);
-        }
-
-        attributes[name] = {
-            type: type,
-            size: mapSize(type),
-            location: location,
+        attributes[attribData.name] = {
+            type:type,
+            size:mapSize(type),
+            location:gl.getAttribLocation(program, attribData.name),
             //TODO - make an attribute object
             pointer: pointer
         };
