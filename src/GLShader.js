@@ -31,7 +31,6 @@ var Shader = function(gl, vertexSrc, fragmentSrc, locationMapping)
     // First compile the program..
     this.program = compileProgram(gl, vertexSrc, fragmentSrc, locationMapping);
 
-
     /**
      * The attributes of the shader as an object containing the following properties
      * {
