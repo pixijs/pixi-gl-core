@@ -18,7 +18,8 @@ var compileProgram = function(gl, vertexSrc, fragmentSrc, locationMapping)
     gl.attachShader(program, glVertShader);
     gl.attachShader(program, glFragShader);
 
-    for (var name in locationMapping){
+    for (var name in locationMapping)
+    {
         var location = locationMapping[name];
         if (typeof location === "number")
         {
