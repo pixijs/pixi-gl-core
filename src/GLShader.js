@@ -2,6 +2,7 @@
 var compileProgram = require('./shader/compileProgram'),
 	extractAttributes = require('./shader/extractAttributes'),
 	extractUniforms = require('./shader/extractUniforms'),
+	setPrecision = require('./shader/setPrecision'),
 	generateUniformAccessObject = require('./shader/generateUniformAccessObject');
 
 /**
@@ -13,7 +14,7 @@ var compileProgram = require('./shader/compileProgram'),
  * @param vertexSrc {string|string[]} The vertex shader source as an array of strings.
  * @param fragmentSrc {string|string[]} The fragment shader source as an array of strings.
  */
-var Shader = function(gl, vertexSrc, fragmentSrc, attributeLocations)
+var Shader = function(gl, vertexSrc, fragmentSrc, precision, attributeLocations)
 {
 	/**
 	 * The current WebGL rendering context
@@ -22,6 +23,13 @@ var Shader = function(gl, vertexSrc, fragmentSrc, attributeLocations)
 	 */
 	this.gl = gl;
 
+
+	if(precision)
+	{
+		vertexSrc = setPrecision(vertexSrc, precision);
+		fragmentSrc = setPrecision(fragmentSrc, precision);
+	}
+
 	/**
 	 * The shader program
 	 *
@@ -29,7 +37,6 @@ var Shader = function(gl, vertexSrc, fragmentSrc, attributeLocations)
 	 */
 	// First compile the program..
 	this.program = compileProgram(gl, vertexSrc, fragmentSrc, attributeLocations);
-
 
 	/**
 	 * The attributes of the shader as an object containing the following properties
@@ -44,13 +51,6 @@ var Shader = function(gl, vertexSrc, fragmentSrc, attributeLocations)
 	// next extract the attributes
 	this.attributes = extractAttributes(gl, this.program);
 
-	for(var i in this.attributes)
-	{
-		console.log(i + " : " + this.attributes[i].location)
-	}
-
-	console.log(">>>>>>>");
-
     var uniformData = extractUniforms(gl, this.program);
 
 	/**
@@ -61,7 +61,8 @@ var Shader = function(gl, vertexSrc, fragmentSrc, attributeLocations)
 	 * }
 	 * @member {Object}
 	 */
-    this.uniforms = generateUniformAccessObject( gl, uniformData );
+	this.uniforms = generateUniformAccessObject( gl, uniformData );
+
 };
 /**
  * Uses this shader
@@ -79,5 +80,6 @@ Shader.prototype.destroy = function()
 {
 	// var gl = this.gl;
 };
+
 
 module.exports = Shader;
