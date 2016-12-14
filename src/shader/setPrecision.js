@@ -8,7 +8,7 @@ var setPrecision = function(src, precision)
 {
     if(src.substring(0, 9) !== 'precision')
     {
-        return `precision ${precision} float;\n${src}`;
+        return 'precision ' + precision + ' float;\n' + src;
     }
 
     return src;
