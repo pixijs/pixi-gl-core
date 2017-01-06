@@ -51,7 +51,7 @@ var Shader = function(gl, vertexSrc, fragmentSrc, precision, attributeLocations)
 	// next extract the attributes
 	this.attributes = extractAttributes(gl, this.program);
 
-    var uniformData = extractUniforms(gl, this.program);
+    this.uniformData = extractUniforms(gl, this.program);
 
 	/**
 	 * The uniforms of the shader as an object containing the following properties
@@ -61,7 +61,7 @@ var Shader = function(gl, vertexSrc, fragmentSrc, precision, attributeLocations)
 	 * }
 	 * @member {Object}
 	 */
-	this.uniforms = generateUniformAccessObject( gl, uniformData );
+	this.uniforms = generateUniformAccessObject( gl, this.uniformData );
 
 };
 /**
