@@ -47,100 +47,100 @@ var generateGetter = function(name)
     };
 };
 
-var glslSetSingle = function glslSetSingle(location, type, value) {
+var glslSetSingle = function glslSetSingle(gl, location, type, value) {
     switch(uniform.type) {
         case 'float':
-            uniform1f(location, value);
+            gl.uniform1f(location, value);
             break;
         case 'vec2':
-            uniform2f(location, value[0], value[1]);
+            gl.uniform2f(location, value[0], value[1]);
             break;
         case 'vec3':
-            uniform3f(location, value[0], value[1], value[2]);
+            gl.uniform3f(location, value[0], value[1], value[2]);
             break;
         case 'vec4':
-            uniform4f(location, value[0], value[1], value[2], value[3]);
+            gl.uniform4f(location, value[0], value[1], value[2], value[3]);
             break;
         case 'int':
-            uniform1i(location, value);
+            gl.uniform1i(location, value);
             break;
         case 'ivec2':
-            uniform2i(location, value[0], value[1]);
+            gl.uniform2i(location, value[0], value[1]);
             break;
         case 'ivec3':
-            uniform3i(location, value[0], value[1], value[2]);
+            gl.uniform3i(location, value[0], value[1], value[2]);
             break;
         case 'ivec4':
-            uniform4i(location, value[0], value[1], value[2], value[3]);
+            gl.uniform4i(location, value[0], value[1], value[2], value[3]);
             break;
         case 'bool':
-            uniform1i(location, value);
+            gl.uniform1i(location, value);
             break;
         case 'bvec2':
-            uniform2i(location, value[0], value[1]);
+            gl.uniform2i(location, value[0], value[1]);
             break;
         case 'bvec3':
-            uniform3i(location, value[0], value[1], value[2]);
+            gl.uniform3i(location, value[0], value[1], value[2]);
             break;
         case 'bvec4':
-            uniform4i(location, value[0], value[1], value[2], value[3]);
+            gl.uniform4i(location, value[0], value[1], value[2], value[3]);
             break;
 
         case 'mat2':
-            uniformMatrix2fv(location, false, value);
+            gl.uniformMatrix2fv(location, false, value);
             break;
         case 'mat3':
-            uniformMatrix3fv(location, false, value);
+            gl.uniformMatrix3fv(location, false, value);
             break;
         case 'mat4':
-            uniformMatrix4fv(location, false, value);
+            gl.uniformMatrix4fv(location, false, value);
             break;
         case 'sampler2D':
-            uniform1i(location, value);
+            gl.uniform1i(location, value);
             break;
     }
 };
 
-var glslSetArray = function glslSetArray(location, type, value) {
+var glslSetArray = function glslSetArray(gl, location, type, value) {
     switch(type) {
         case 'float':
-            uniform1fv(location, value);
+            gl.uniform1fv(location, value);
             break;
         case 'vec2':
-            uniform2fv(location, value);
+            gl.uniform2fv(location, value);
             break;
         case 'vec3':
-            uniform3fv(location, value);
+            gl.uniform3fv(location, value);
             break;
         case 'vec4':
-            uniform4fv(location, value);
+            gl.uniform4fv(location, value);
             break;
         case 'int':
-            uniform1iv(location, value);
+            gl.uniform1iv(location, value);
             break;
         case 'ivec2':
-            uniform2iv(location, value);
+            gl.uniform2iv(location, value);
             break;
         case 'ivec3':
-            uniform3iv(location, value);
+            gl.uniform3iv(location, value);
             break;
         case 'ivec4':
-            uniform4iv(location, value);
+            gl.uniform4iv(location, value);
             break;
         case 'bool':
-            uniform1iv(location, value);
+            gl.uniform1iv(location, value);
             break;
         case 'bvec2':
-            uniform2iv(location, value);
+            gl.uniform2iv(location, value);
             break;
         case 'bvec3':
-            uniform3iv(location, value);
+            gl.uniform3iv(location, value);
             break;
         case 'bvec4':
-            uniform4iv(location, value);
+            gl.uniform4iv(location, value);
             break;
         case 'sampler2D':
-            uniorm1iv(location, value);
+            gl.uniorm1iv(location, value);
             break;
     }
 };
@@ -152,11 +152,11 @@ var generateSetter = function(name, uniform)
         var location = this.data[name].location;
         if (uniform.size === 1)
         {
-            glslSetSingle(location, uniform.type, value);
+            glslSetSingle(this.gl, location, uniform.type, value);
         }
         else
         {
-            glslSetArray(location, uniform.type, value);
+            glslSetArray(this.gl, location, uniform.type, value);
         }
     };
 };
