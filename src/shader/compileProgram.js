@@ -23,7 +23,7 @@ var compileProgram = function(gl, vertexSrc, fragmentSrc, attributeLocations)
     {
         for(var i in attributeLocations)
         {
-            gl.bindAttribLocation(program, attributeLocations[i], i)
+            gl.bindAttribLocation(program, attributeLocations[i], i);
         }
     }
 
