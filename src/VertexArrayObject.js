@@ -135,6 +135,7 @@ VertexArrayObject.prototype.activate = function()
             lastBuffer = attrib.buffer;
         }
 
+
         //attrib.attribute.pointer(attrib.type, attrib.normalized, attrib.stride, attrib.start);
         gl.vertexAttribPointer(attrib.attribute.location,
                                attrib.attribute.size, attrib.type || gl.FLOAT,
@@ -220,7 +221,7 @@ VertexArrayObject.prototype.clear = function()
 VertexArrayObject.prototype.draw = function(type, size, start)
 {
     var gl = this.gl;
-    gl.drawElements(type, size, gl.UNSIGNED_SHORT, start || 0);
+    gl.drawElements(type, size || this.indexBuffer.data.length, gl.UNSIGNED_SHORT, start || 0);
 
     return this;
 };
