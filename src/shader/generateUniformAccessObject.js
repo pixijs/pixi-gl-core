@@ -140,7 +140,7 @@ var glslSetArray = function glslSetArray(gl, location, type, value) {
             gl.uniform4iv(location, value);
             break;
         case 'sampler2D':
-            gl.uniorm1iv(location, value);
+            gl.uniform1iv(location, value);
             break;
     }
 };
