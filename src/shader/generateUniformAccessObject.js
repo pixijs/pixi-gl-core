@@ -48,7 +48,7 @@ var generateGetter = function(name)
 };
 
 var glslSetSingle = function glslSetSingle(gl, location, type, value) {
-    switch(uniform.type) {
+    switch(type) {
         case 'float':
             gl.uniform1f(location, value);
             break;
