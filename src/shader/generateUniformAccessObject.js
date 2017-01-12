@@ -42,7 +42,6 @@ var generateUniformAccessObject = function(gl, uniformData)
 
 var generateGetter = function(name)
 {
-	var template = getterTemplate.replace('%%', name);
     return function() {
         return this.data[name].value;
     };
