@@ -135,20 +135,21 @@ VertexArrayObject.prototype.activate = function()
             lastBuffer = attrib.buffer;
         }
 
-
         //attrib.attribute.pointer(attrib.type, attrib.normalized, attrib.stride, attrib.start);
         gl.vertexAttribPointer(attrib.attribute.location,
-                               attrib.attribute.size, attrib.type || gl.FLOAT,
+                               attrib.attribute.size,
+                               attrib.type || gl.FLOAT,
                                attrib.normalized || false,
                                attrib.stride || 0,
                                attrib.start || 0);
-
-
     }
 
     setVertexAttribArrays(gl, this.attributes, this.nativeState);
 
-    this.indexBuffer.bind();
+    if(this.indexBuffer)
+    {
+        this.indexBuffer.bind();
+    }
 
     return this;
 };
@@ -221,7 +222,16 @@ VertexArrayObject.prototype.clear = function()
 VertexArrayObject.prototype.draw = function(type, size, start)
 {
     var gl = this.gl;
-    gl.drawElements(type, size || this.indexBuffer.data.length, gl.UNSIGNED_SHORT, start || 0);
+
+    if(this.indexBuffer)
+    {
+        gl.drawElements(type, size || this.indexBuffer.data.length, gl.UNSIGNED_SHORT, start || 0);
+    }
+    else
+    {
+        // TODO need a better way to calculate size..
+        gl.drawArrays(type, start, size || this.getSize());
+    }
 
     return this;
 };
@@ -245,3 +255,9 @@ VertexArrayObject.prototype.destroy = function()
     this.nativeVaoExtension = null;
     this.nativeVao = null;
 };
+
+VertexArrayObject.prototype.getSize = function()
+{
+    const attrib = this.attributes[0];
+    return attrib.buffer.data.length / (attrib.stride || attrib.attribute.size);
+}
