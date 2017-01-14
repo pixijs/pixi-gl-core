@@ -135,7 +135,6 @@ VertexArrayObject.prototype.activate = function()
             lastBuffer = attrib.buffer;
         }
 
-        //attrib.attribute.pointer(attrib.type, attrib.normalized, attrib.stride, attrib.start);
         gl.vertexAttribPointer(attrib.attribute.location,
                                attrib.attribute.size,
                                attrib.type || gl.FLOAT,
@@ -258,6 +257,6 @@ VertexArrayObject.prototype.destroy = function()
 
 VertexArrayObject.prototype.getSize = function()
 {
-    const attrib = this.attributes[0];
+    var attrib = this.attributes[0];
     return attrib.buffer.data.length / (attrib.stride || attrib.attribute.size);
-}
+};
