@@ -52,8 +52,6 @@ var Framebuffer = function(gl, width, height)
      * @member {Number}
      */
     this.height = height || 100;
-
-
 };
 
 /**
