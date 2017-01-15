@@ -47,102 +47,51 @@ var generateGetter = function(name)
     };
 };
 
-var glslSetSingle = function glslSetSingle(gl, location, type, value) {
-    switch(type) {
-        case 'float':
-            gl.uniform1f(location, value);
-            break;
-        case 'vec2':
-            gl.uniform2f(location, value[0], value[1]);
-            break;
-        case 'vec3':
-            gl.uniform3f(location, value[0], value[1], value[2]);
-            break;
-        case 'vec4':
-            gl.uniform4f(location, value[0], value[1], value[2], value[3]);
-            break;
-        case 'int':
-            gl.uniform1i(location, value);
-            break;
-        case 'ivec2':
-            gl.uniform2i(location, value[0], value[1]);
-            break;
-        case 'ivec3':
-            gl.uniform3i(location, value[0], value[1], value[2]);
-            break;
-        case 'ivec4':
-            gl.uniform4i(location, value[0], value[1], value[2], value[3]);
-            break;
-        case 'bool':
-            gl.uniform1i(location, value);
-            break;
-        case 'bvec2':
-            gl.uniform2i(location, value[0], value[1]);
-            break;
-        case 'bvec3':
-            gl.uniform3i(location, value[0], value[1], value[2]);
-            break;
-        case 'bvec4':
-            gl.uniform4i(location, value[0], value[1], value[2], value[3]);
-            break;
+var GLSL_SINGLE_SETTERS = {
+    float: function setSingleFloat(gl, location, value) { gl.uniform1f(location, value); },
+    vec2: function setSingleVec2(gl, location, value) { gl.uniform2f(location, value[0], value[1]); },
+    vec3: function setSingleVec3(gl, location, value) { gl.uniform3f(location, value[0], value[1], value[2]); },
+    vec4: function setSingleVec4(gl, location, value) { gl.uniform4f(location, value[0], value[1], value[2], value[3]); },
 
-        case 'mat2':
-            gl.uniformMatrix2fv(location, false, value);
-            break;
-        case 'mat3':
-            gl.uniformMatrix3fv(location, false, value);
-            break;
-        case 'mat4':
-            gl.uniformMatrix4fv(location, false, value);
-            break;
-        case 'sampler2D':
-            gl.uniform1i(location, value);
-            break;
-    }
+    int: function setSingleInt(gl, location, value) { gl.uniform1i(location, value); },
+    ivec2: function setSingleIvec2(gl, location, value) { gl.uniform2i(location, value[0], value[1]); },
+    ivec3: function setSingleIvec3(gl, location, value) { gl.uniform3i(location, value[0], value[1], value[2]); },
+    ivec4: function setSingleIvec4(gl, location, value) { gl.uniform4i(location, value[0], value[1], value[2], value[3]); },
+
+    bool: function setSingleBool(gl, location, value) { gl.uniform1i(location, value); },
+    bvec2: function setSingleBvec2(gl, location, value) { gl.uniform2i(location, value[0], value[1]); },
+    bvec3: function setSingleBvec3(gl, location, value) { gl.uniform3i(location, value[0], value[1], value[2]); },
+    bvec4: function setSingleBvec4(gl, location, value) { gl.uniform4i(location, value[0], value[1], value[2], value[3]); },
+
+    mat2: function setSingleMat2(gl, location, value) { gl.uniformMatrix2fv(location, false, value); },
+    mat3: function setSingleMat3(gl, location, value) { gl.uniformMatrix3fv(location, false, value); },
+    mat4: function setSingleMat4(gl, location, value) { gl.uniformMatrix4fv(location, false, value); },
+
+    sampler2D: function setSingleSampler2D(gl, location, value) { gl.uniform1i(location, value); },
+};
+
+var glslSetSingle = function glslSetSingle(gl, location, type, value) {
+    GLSL_SINGLE_SETTERS[type](gl, location, value);
+};
+
+var GLSL_ARRAY_SETTERS = {
+    float: function setFloatArray(gl, location, value) { gl.uniform1fv(location, value); },
+    vec2: function setVec2Array(gl, location, value) { gl.uniform2fv(location, value); },
+    vec3: function setVec3Array(gl, location, value) { gl.uniform3fv(location, value); },
+    vec4: function setVec4Array(gl, location, value) { gl.uniform4fv(location, value); },
+    int: function setIntArray(gl, location, value) { gl.uniform1iv(location, value); },
+    ivec2: function setIvec2Array(gl, location, value) { gl.uniform2iv(location, value); },
+    ivec3: function setIvec3Array(gl, location, value) { gl.uniform3iv(location, value); },
+    ivec4: function setIvec4Array(gl, location, value) { gl.uniform4iv(location, value); },
+    bool: function setBoolArray(gl, location, value) { gl.uniform1iv(location, value); },
+    bvec2: function setBvec2Array(gl, location, value) { gl.uniform2iv(location, value); },
+    bvec3: function setBvec3Array(gl, location, value) { gl.uniform3iv(location, value); },
+    bvec4: function setBvec4Array(gl, location, value) { gl.uniform4iv(location, value); },
+    sampler2D: function setSampler2DArray(gl, location, value) { gl.uniform1iv(location, value); },
 };
 
 var glslSetArray = function glslSetArray(gl, location, type, value) {
-    switch(type) {
-        case 'float':
-            gl.uniform1fv(location, value);
-            break;
-        case 'vec2':
-            gl.uniform2fv(location, value);
-            break;
-        case 'vec3':
-            gl.uniform3fv(location, value);
-            break;
-        case 'vec4':
-            gl.uniform4fv(location, value);
-            break;
-        case 'int':
-            gl.uniform1iv(location, value);
-            break;
-        case 'ivec2':
-            gl.uniform2iv(location, value);
-            break;
-        case 'ivec3':
-            gl.uniform3iv(location, value);
-            break;
-        case 'ivec4':
-            gl.uniform4iv(location, value);
-            break;
-        case 'bool':
-            gl.uniform1iv(location, value);
-            break;
-        case 'bvec2':
-            gl.uniform2iv(location, value);
-            break;
-        case 'bvec3':
-            gl.uniform3iv(location, value);
-            break;
-        case 'bvec4':
-            gl.uniform4iv(location, value);
-            break;
-        case 'sampler2D':
-            gl.uniform1iv(location, value);
-            break;
-    }
+    GLSL_ARRAY_SETTERS[type](gl, location, value);
 };
 
 var generateSetter = function(name, uniform)
