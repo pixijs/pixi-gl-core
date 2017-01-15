@@ -224,10 +224,11 @@ VertexArrayObject.prototype.draw = function(type, size, start)
 
     if(this.indexBuffer)
     {
-        gl.drawElements(type, size || this.indexBuffer.data.length, gl.UNSIGNED_SHORT, start || 0);
+        gl.drawElements(type, size || this.indexBuffer.data.length, gl.UNSIGNED_SHORT, (start || 0) * 2 );
     }
     else
     {
+        console.log(this.getSize());
         // TODO need a better way to calculate size..
         gl.drawArrays(type, start, size || this.getSize());
     }
@@ -258,5 +259,5 @@ VertexArrayObject.prototype.destroy = function()
 VertexArrayObject.prototype.getSize = function()
 {
     var attrib = this.attributes[0];
-    return attrib.buffer.data.length / (attrib.stride || attrib.attribute.size);
+    return attrib.buffer.data.length / (( attrib.stride/4 ) || attrib.attribute.size);
 };
