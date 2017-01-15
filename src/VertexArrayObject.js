@@ -228,7 +228,6 @@ VertexArrayObject.prototype.draw = function(type, size, start)
     }
     else
     {
-        console.log(this.getSize());
         // TODO need a better way to calculate size..
         gl.drawArrays(type, start, size || this.getSize());
     }
