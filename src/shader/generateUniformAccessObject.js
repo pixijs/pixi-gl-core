@@ -23,6 +23,7 @@ var generateUniformAccessObject = function(gl, uniformData)
         var nameTokens = fullName.split('.');
         var name = nameTokens[nameTokens.length - 1];
 
+
         var uniformGroup = getUniformGroup(nameTokens, uniforms);
 
         var uniform =  uniformData[fullName];
