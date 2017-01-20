@@ -70,7 +70,7 @@ var GLSL_SINGLE_SETTERS = {
     sampler2D: function setSingleSampler2D(gl, location, value) { gl.uniform1i(location, value); },
 };
 
-var glslSetSingle = function glslSetSingle(gl, location, type, value) {
+function glslSetSingle(gl, location, type, value) {
     GLSL_SINGLE_SETTERS[type](gl, location, value);
 };
 
@@ -90,11 +90,11 @@ var GLSL_ARRAY_SETTERS = {
     sampler2D: function setSampler2DArray(gl, location, value) { gl.uniform1iv(location, value); },
 };
 
-var glslSetArray = function glslSetArray(gl, location, type, value) {
+function glslSetArray(gl, location, type, value) {
     GLSL_ARRAY_SETTERS[type](gl, location, value);
 };
 
-var generateSetter = function(name, uniform)
+function generateSetter(name, uniform)
 {
     return function(value) {
         this.data[name].value = value;
@@ -110,7 +110,7 @@ var generateSetter = function(name, uniform)
     };
 };
 
-var getUniformGroup = function(nameTokens, uniform)
+function getUniformGroup(nameTokens, uniform)
 {
     var cur = uniform;
 
