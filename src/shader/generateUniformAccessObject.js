@@ -72,7 +72,7 @@ var GLSL_SINGLE_SETTERS = {
 
 function glslSetSingle(gl, location, type, value) {
     GLSL_SINGLE_SETTERS[type](gl, location, value);
-};
+}
 
 var GLSL_ARRAY_SETTERS = {
     float: function setFloatArray(gl, location, value) { gl.uniform1fv(location, value); },
@@ -92,7 +92,7 @@ var GLSL_ARRAY_SETTERS = {
 
 function glslSetArray(gl, location, type, value) {
     GLSL_ARRAY_SETTERS[type](gl, location, value);
-};
+}
 
 function generateSetter(name, uniform)
 {
@@ -108,7 +108,7 @@ function generateSetter(name, uniform)
             glslSetArray(this.gl, location, uniform.type, value);
         }
     };
-};
+}
 
 function getUniformGroup(nameTokens, uniform)
 {
@@ -122,7 +122,7 @@ function getUniformGroup(nameTokens, uniform)
     }
 
     return cur;
-};
+}
 
 
 module.exports = generateUniformAccessObject;
