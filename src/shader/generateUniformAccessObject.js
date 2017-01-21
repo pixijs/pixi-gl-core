@@ -70,10 +70,6 @@ var GLSL_SINGLE_SETTERS = {
     sampler2D: function setSingleSampler2D(gl, location, value) { gl.uniform1i(location, value); },
 };
 
-function glslSetSingle(gl, location, type, value) {
-    GLSL_SINGLE_SETTERS[type](gl, location, value);
-}
-
 var GLSL_ARRAY_SETTERS = {
     float: function setFloatArray(gl, location, value) { gl.uniform1fv(location, value); },
     vec2: function setVec2Array(gl, location, value) { gl.uniform2fv(location, value); },
@@ -90,10 +86,6 @@ var GLSL_ARRAY_SETTERS = {
     sampler2D: function setSampler2DArray(gl, location, value) { gl.uniform1iv(location, value); },
 };
 
-function glslSetArray(gl, location, type, value) {
-    GLSL_ARRAY_SETTERS[type](gl, location, value);
-}
-
 function generateSetter(name, uniform)
 {
     return function(value) {
@@ -101,11 +93,12 @@ function generateSetter(name, uniform)
         var location = this.data[name].location;
         if (uniform.size === 1)
         {
-            glslSetSingle(this.gl, location, uniform.type, value);
+            GLSL_SINGLE_SETTERS[uniform.type](this.gl, location, value);
         }
         else
         {
-            glslSetArray(this.gl, location, uniform.type, value);
+            // glslSetArray(gl, location, type, value) {
+            GLSL_ARRAY_SETTERS[uniform.type](this.gl, location, value);
         }
     };
 }
