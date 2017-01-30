@@ -25,7 +25,6 @@ var Shader = function(gl, vertexSrc, fragmentSrc, precision, attributeLocations)
 	 */
 	this.gl = gl;
 
-
 	if(precision)
 	{
 		vertexSrc = setPrecision(vertexSrc, precision);
@@ -80,7 +79,12 @@ Shader.prototype.bind = function()
  */
 Shader.prototype.destroy = function()
 {
-	// var gl = this.gl;
+	this.attributes = null;
+	this.uniformData = null;
+	this.uniforms = null;
+
+	var gl = this.gl;
+	gl.deleteProgram(this.program);
 };
 
 
