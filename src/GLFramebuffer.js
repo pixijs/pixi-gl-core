@@ -190,7 +190,8 @@ Framebuffer.createRGBA = function(gl, width, height, data)
     //now create the framebuffer object and attach the texture to it.
     var fbo = new Framebuffer(gl, width, height);
     fbo.enableTexture(texture);
-    fbo.enableStencil();
+
+    //fbo.enableStencil(); // get this back on soon!
 
     fbo.unbind();
 
