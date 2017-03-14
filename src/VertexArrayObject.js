@@ -2,6 +2,7 @@
 // state object//
 var setVertexAttribArrays = require( './setVertexAttribArrays' );
 
+
 /**
  * Helper class to work with WebGL VertexArrayObjects (vaos)
  * Only works if WebGL extensions are enabled (they usually are)
@@ -19,6 +20,8 @@ function VertexArrayObject(gl, state)
         this.nativeVaoExtension = gl.getExtension('OES_vertex_array_object') ||
                                   gl.getExtension('MOZ_OES_vertex_array_object') ||
                                   gl.getExtension('WEBKIT_OES_vertex_array_object');
+
+        this.instanceExt = gl.getExtension("ANGLE_instanced_arrays");
     }
 
     this.nativeState = state;
@@ -141,6 +144,18 @@ VertexArrayObject.prototype.activate = function()
                                attrib.normalized || false,
                                attrib.stride || 0,
                                attrib.start || 0);
+
+        if(attrib.instance)
+        {
+            if(this.instanceExt)
+            {
+                this.instanceExt.vertexAttribDivisorANGLE(attrib.attribute.location, 1);
+            }
+            else
+            {
+                console.warn('instancing not supported by this device :/')
+            }
+        }
     }
 
     setVertexAttribArrays(gl, this.attributes, this.nativeState);
@@ -162,7 +177,7 @@ VertexArrayObject.prototype.activate = function()
  * @param stride     {Number}
  * @param start      {Number}
  */
-VertexArrayObject.prototype.addAttribute = function(buffer, attribute, type, normalized, stride, start)
+VertexArrayObject.prototype.addAttribute = function(buffer, attribute, type, normalized, stride, start, instance)
 {
     this.attributes.push({
         buffer:     buffer,
@@ -172,8 +187,11 @@ VertexArrayObject.prototype.addAttribute = function(buffer, attribute, type, nor
         type:       type || this.gl.FLOAT,
         normalized: normalized || false,
         stride:     stride || 0,
-        start:      start || 0
+        start:      start || 0,
+        instance:   instance
     });
+
+    this.instancedMesh = this.instancedMesh || instance;
 
     this.dirty = true;
 
@@ -218,18 +236,32 @@ VertexArrayObject.prototype.clear = function()
  * @param size  {Number}
  * @param start {Number}
  */
-VertexArrayObject.prototype.draw = function(type, size, start)
+VertexArrayObject.prototype.draw = function(type, size, start, instanceCount)
 {
     var gl = this.gl;
 
     if(this.indexBuffer)
     {
-        gl.drawElements(type, size || this.indexBuffer.data.length, gl.UNSIGNED_SHORT, (start || 0) * 2 );
+        if(this.instancedMesh)
+        {
+            this.instanceExt.drawElementsInstancedANGLE(type, size || this.indexBuffer.data.length, gl.UNSIGNED_SHORT, (start || 0) * 2, instanceCount || 1);
+        }
+        else
+        {
+            gl.drawElements(type, size || this.indexBuffer.data.length, gl.UNSIGNED_SHORT, (start || 0) * 2 );
+        }
     }
     else
     {
-        // TODO need a better way to calculate size..
-        gl.drawArrays(type, start, size || this.getSize());
+        if(this.instancedMesh)
+        {
+            // TODO need a better way to calculate size..
+           this.instanceExt.drawArrayInstancedANGLE(type, start, size || this.getSize(), instanceCount || 1);
+        }
+        else
+        {
+            gl.drawArrays(type, start, size || this.getSize());
+        }
     }
 
     return this;

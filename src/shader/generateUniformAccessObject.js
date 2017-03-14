@@ -114,7 +114,9 @@ var GLSL_TO_SINGLE_SETTERS = {
     'mat3':     'uniformMatrix3fv(location, false, value)',
     'mat4':     'uniformMatrix4fv(location, false, value)',
 
-    'sampler2D':'uniform1i(location, value)'
+    'sampler2D':'uniform1i(location, value)',
+    'samplerCube': 'uniform1i(location, value)'
+
 };
 
 var GLSL_TO_ARRAY_SETTERS = {
@@ -135,7 +137,8 @@ var GLSL_TO_ARRAY_SETTERS = {
     'bvec3':    'uniform3iv(location, value)',
     'bvec4':    'uniform4iv(location, value)',
 
-    'sampler2D':'uniform1iv(location, value)'
+    'sampler2D':'uniform1iv(location, value)',
+    'samplerCube': 'uniform1i(location, value)'
 };
 
 module.exports = generateUniformAccessObject;

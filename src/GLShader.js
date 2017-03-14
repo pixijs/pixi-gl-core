@@ -64,6 +64,7 @@ var Shader = function(gl, vertexSrc, fragmentSrc, precision, attributeLocations)
 	 */
 	this.uniforms = generateUniformAccessObject( gl, this.uniformData );
 
+	this.uniformGroups = {};
 };
 /**
  * Uses this shader
