@@ -32,7 +32,7 @@ Including in the Browser:
 <script>
     try 
     {
-        var context = pixi.gl.createContext(document.getElementById('stage'));
+        var context = pixiGlCore.createContext(document.getElementById('stage'));
     }
     catch(e)
     {
