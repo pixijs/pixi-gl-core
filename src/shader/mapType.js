@@ -1,6 +1,6 @@
 
 
-var mapSize = function(gl, type) 
+var mapType = function(gl, type) 
 {
     if(!GL_TABLE) 
     {
@@ -43,4 +43,4 @@ var GL_TO_GLSL_TYPES = {
   'SAMPLER_2D':  'sampler2D'  
 };
 
-module.exports = mapSize;
+module.exports = mapType;
