@@ -192,6 +192,8 @@ Framebuffer.createRGBA = function(gl, width, height, data)
     fbo.enableTexture(texture);
     //fbo.enableStencil(); // get this back on soon!
 
+    //fbo.enableStencil(); // get this back on soon!
+
     fbo.unbind();
 
     return fbo;
