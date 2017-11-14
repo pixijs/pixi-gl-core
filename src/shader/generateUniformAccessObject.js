@@ -42,33 +42,68 @@ var generateUniformAccessObject = function(gl, uniformData)
 
 var generateGetter = function(name)
 {
-	var template = getterTemplate.replace('%%', name);
-	return new Function(template); // jshint ignore:line
+    return function() {
+        return this.data[name].value;
+    };
 };
 
-var generateSetter = function(name, uniform)
+var GLSL_SINGLE_SETTERS = {
+    float: function setSingleFloat(gl, location, value) { gl.uniform1f(location, value); },
+    vec2: function setSingleVec2(gl, location, value) { gl.uniform2f(location, value[0], value[1]); },
+    vec3: function setSingleVec3(gl, location, value) { gl.uniform3f(location, value[0], value[1], value[2]); },
+    vec4: function setSingleVec4(gl, location, value) { gl.uniform4f(location, value[0], value[1], value[2], value[3]); },
+
+    int: function setSingleInt(gl, location, value) { gl.uniform1i(location, value); },
+    ivec2: function setSingleIvec2(gl, location, value) { gl.uniform2i(location, value[0], value[1]); },
+    ivec3: function setSingleIvec3(gl, location, value) { gl.uniform3i(location, value[0], value[1], value[2]); },
+    ivec4: function setSingleIvec4(gl, location, value) { gl.uniform4i(location, value[0], value[1], value[2], value[3]); },
+
+    bool: function setSingleBool(gl, location, value) { gl.uniform1i(location, value); },
+    bvec2: function setSingleBvec2(gl, location, value) { gl.uniform2i(location, value[0], value[1]); },
+    bvec3: function setSingleBvec3(gl, location, value) { gl.uniform3i(location, value[0], value[1], value[2]); },
+    bvec4: function setSingleBvec4(gl, location, value) { gl.uniform4i(location, value[0], value[1], value[2], value[3]); },
+
+    mat2: function setSingleMat2(gl, location, value) { gl.uniformMatrix2fv(location, false, value); },
+    mat3: function setSingleMat3(gl, location, value) { gl.uniformMatrix3fv(location, false, value); },
+    mat4: function setSingleMat4(gl, location, value) { gl.uniformMatrix4fv(location, false, value); },
+
+    sampler2D: function setSingleSampler2D(gl, location, value) { gl.uniform1i(location, value); },
+};
+
+var GLSL_ARRAY_SETTERS = {
+    float: function setFloatArray(gl, location, value) { gl.uniform1fv(location, value); },
+    vec2: function setVec2Array(gl, location, value) { gl.uniform2fv(location, value); },
+    vec3: function setVec3Array(gl, location, value) { gl.uniform3fv(location, value); },
+    vec4: function setVec4Array(gl, location, value) { gl.uniform4fv(location, value); },
+    int: function setIntArray(gl, location, value) { gl.uniform1iv(location, value); },
+    ivec2: function setIvec2Array(gl, location, value) { gl.uniform2iv(location, value); },
+    ivec3: function setIvec3Array(gl, location, value) { gl.uniform3iv(location, value); },
+    ivec4: function setIvec4Array(gl, location, value) { gl.uniform4iv(location, value); },
+    bool: function setBoolArray(gl, location, value) { gl.uniform1iv(location, value); },
+    bvec2: function setBvec2Array(gl, location, value) { gl.uniform2iv(location, value); },
+    bvec3: function setBvec3Array(gl, location, value) { gl.uniform3iv(location, value); },
+    bvec4: function setBvec4Array(gl, location, value) { gl.uniform4iv(location, value); },
+    sampler2D: function setSampler2DArray(gl, location, value) { gl.uniform1iv(location, value); },
+};
+
+function generateSetter(name, uniform)
 {
-    var template = setterTemplate.replace(/%%/g, name);
-    var setTemplate;
+    return function(value) {
+        this.data[name].value = value;
+        var location = this.data[name].location;
+        if (uniform.size === 1)
+        {
+            GLSL_SINGLE_SETTERS[uniform.type](this.gl, location, value);
+        }
+        else
+        {
+            // glslSetArray(gl, location, type, value) {
+            GLSL_ARRAY_SETTERS[uniform.type](this.gl, location, value);
+        }
+    };
+}
 
-    if(uniform.size === 1)
-    {
-        setTemplate = GLSL_TO_SINGLE_SETTERS[uniform.type];
-    }
-    else
-    {
-        setTemplate = GLSL_TO_ARRAY_SETTERS[uniform.type];
-    }
-
-    if(setTemplate)
-    {
-        template += "\nthis.gl." + setTemplate + ";";
-    }
-
-  	return new Function('value', template); // jshint ignore:line
-};
-
-var getUniformGroup = function(nameTokens, uniform)
+function getUniformGroup(nameTokens, uniform)
 {
     var cur = uniform;
 
@@ -80,62 +115,7 @@ var getUniformGroup = function(nameTokens, uniform)
     }
 
     return cur;
-};
+}
 
-var getterTemplate = [
-    'return this.data.%%.value;',
-].join('\n');
-
-var setterTemplate = [
-    'this.data.%%.value = value;',
-    'var location = this.data.%%.location;'
-].join('\n');
-
-
-var GLSL_TO_SINGLE_SETTERS = {
-
-    'float':    'uniform1f(location, value)',
-
-    'vec2':     'uniform2f(location, value[0], value[1])',
-    'vec3':     'uniform3f(location, value[0], value[1], value[2])',
-    'vec4':     'uniform4f(location, value[0], value[1], value[2], value[3])',
-
-    'int':      'uniform1i(location, value)',
-    'ivec2':    'uniform2i(location, value[0], value[1])',
-    'ivec3':    'uniform3i(location, value[0], value[1], value[2])',
-    'ivec4':    'uniform4i(location, value[0], value[1], value[2], value[3])',
-
-    'bool':     'uniform1i(location, value)',
-    'bvec2':    'uniform2i(location, value[0], value[1])',
-    'bvec3':    'uniform3i(location, value[0], value[1], value[2])',
-    'bvec4':    'uniform4i(location, value[0], value[1], value[2], value[3])',
-
-    'mat2':     'uniformMatrix2fv(location, false, value)',
-    'mat3':     'uniformMatrix3fv(location, false, value)',
-    'mat4':     'uniformMatrix4fv(location, false, value)',
-
-    'sampler2D':'uniform1i(location, value)'
-};
-
-var GLSL_TO_ARRAY_SETTERS = {
-
-    'float':    'uniform1fv(location, value)',
-
-    'vec2':     'uniform2fv(location, value)',
-    'vec3':     'uniform3fv(location, value)',
-    'vec4':     'uniform4fv(location, value)',
-
-    'int':      'uniform1iv(location, value)',
-    'ivec2':    'uniform2iv(location, value)',
-    'ivec3':    'uniform3iv(location, value)',
-    'ivec4':    'uniform4iv(location, value)',
-
-    'bool':     'uniform1iv(location, value)',
-    'bvec2':    'uniform2iv(location, value)',
-    'bvec3':    'uniform3iv(location, value)',
-    'bvec4':    'uniform4iv(location, value)',
-
-    'sampler2D':'uniform1iv(location, value)'
-};
 
 module.exports = generateUniformAccessObject;
