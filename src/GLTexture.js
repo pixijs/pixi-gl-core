@@ -91,7 +91,7 @@ Texture.prototype.upload = function(source)
 
 	if(newHeight !== this.height || newWidth !== this.width)
 	{
-    	gl.texImage2D(gl.TEXTURE_2D, 0, this.format, this.format, this.type, source);
+		gl.texImage2D(gl.TEXTURE_2D, 0, this.format, this.format, this.type, source);
 	}
 	else
 	{
@@ -140,7 +140,7 @@ Texture.prototype.uploadData = function(data, width, height)
 	else
 	{
 		// TODO support for other types
-		this.type = gl.UNSIGNED_BYTE;
+		this.type = this.type || gl.UNSIGNED_BYTE;
 	}
 
 	// what type of data?

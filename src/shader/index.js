@@ -4,6 +4,7 @@ module.exports = {
     extractAttributes: require('./extractAttributes'),
     extractUniforms: require('./extractUniforms'),
     generateUniformAccessObject: require('./generateUniformAccessObject'),
+    setPrecision: require('./setPrecision'),
     mapSize: require('./mapSize'),
-    mapType: require('./mapType')  
+    mapType: require('./mapType')
 };

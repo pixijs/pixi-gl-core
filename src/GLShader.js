@@ -1,8 +1,9 @@
 
 var compileProgram = require('./shader/compileProgram'),
-    extractAttributes = require('./shader/extractAttributes'),
-    extractUniforms = require('./shader/extractUniforms'),
-    generateUniformAccessObject = require('./shader/generateUniformAccessObject');
+	extractAttributes = require('./shader/extractAttributes'),
+	extractUniforms = require('./shader/extractUniforms'),
+	setPrecision = require('./shader/setPrecision'),
+	generateUniformAccessObject = require('./shader/generateUniformAccessObject');
 
 /**
  * Helper class to create a webGL Shader
@@ -12,56 +13,67 @@ var compileProgram = require('./shader/compileProgram'),
  * @param gl {WebGLRenderingContext}
  * @param vertexSrc {string|string[]} The vertex shader source as an array of strings.
  * @param fragmentSrc {string|string[]} The fragment shader source as an array of strings.
- * @param locationMapping {object} [locationMapping=null] for bind attribute location.
+ * @param precision {string} The float precision of the shader. Options are 'lowp', 'mediump' or 'highp'.
+ * @param attributeLocations {object} A key value pair showing which location eact attribute should sit eg {position:0, uvs:1}
  */
-var Shader = function(gl, vertexSrc, fragmentSrc, locationMapping)
+var Shader = function(gl, vertexSrc, fragmentSrc, precision, attributeLocations)
 {
-    /**
-     * The current WebGL rendering context
-     *
-     * @member {WebGLRenderingContext}
-     */
-    this.gl = gl;
+	/**
+	 * The current WebGL rendering context
+	 *
+	 * @member {WebGLRenderingContext}
+	 */
+	this.gl = gl;
 
-    /**
-     * The shader program
-     *
-     * @member {WebGLProgram}
-     */
-    // First compile the program..
-    this.program = compileProgram(gl, vertexSrc, fragmentSrc, locationMapping);
+	if(precision)
+	{
+		vertexSrc = setPrecision(vertexSrc, precision);
+		fragmentSrc = setPrecision(fragmentSrc, precision);
+	}
 
-    /**
-     * The attributes of the shader as an object containing the following properties
-     * {
-     *  type,
-     *  size,
-     *  location,
-     *  pointer
-     * }
-     * @member {Object}
-     */
-    // next extract the attributes
-    this.attributes = extractAttributes(gl, this.program);
+	/**
+	 * The shader program
+	 *
+	 * @member {WebGLProgram}
+	 */
+	// First compile the program..
+	this.program = compileProgram(gl, vertexSrc, fragmentSrc, attributeLocations);
 
-    var uniformData = extractUniforms(gl, this.program);
+	/**
+	 * The attributes of the shader as an object containing the following properties
+	 * {
+	 * 	type,
+	 * 	size,
+	 * 	location,
+	 * 	pointer
+	 * }
+	 * @member {Object}
+	 */
+	// next extract the attributes
+	this.attributes = extractAttributes(gl, this.program);
 
-    /**
-     * The uniforms of the shader as an object containing the following properties
-     * {
-     *  gl,
-     *  data
-     * }
-     * @member {Object}
-     */
-    this.uniforms = generateUniformAccessObject( gl, uniformData );
+    this.uniformData = extractUniforms(gl, this.program);
+
+	/**
+	 * The uniforms of the shader as an object containing the following properties
+	 * {
+	 * 	gl,
+	 * 	data
+	 * }
+	 * @member {Object}
+	 */
+	this.uniforms = generateUniformAccessObject( gl, this.uniformData );
+
 };
 /**
  * Uses this shader
+ * 
+ * @return {PIXI.glCore.GLShader} Returns itself.
  */
 Shader.prototype.bind = function()
 {
-    this.gl.useProgram(this.program);
+	this.gl.useProgram(this.program);
+	return this;
 };
 
 /**
@@ -70,7 +82,13 @@ Shader.prototype.bind = function()
  */
 Shader.prototype.destroy = function()
 {
-    // var gl = this.gl;
+	this.attributes = null;
+	this.uniformData = null;
+	this.uniforms = null;
+
+	var gl = this.gl;
+	gl.deleteProgram(this.program);
 };
+
 
 module.exports = Shader;
