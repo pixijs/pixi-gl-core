@@ -223,4 +223,22 @@ Framebuffer.createFloat32 = function(gl, width, height, data)
     return fbo;
 };
 
+Framebuffer.createHalfFloat = function(gl, width, height, data)
+{
+    // create a new texture..
+    var texture = new Texture(gl);
+    texture.uploadData(data, width, height);
+
+    texture.enableNearestScaling();
+    texture.enableWrapClamp();
+
+    //now create the framebuffer object and attach the texture to it.
+    var fbo = new Framebuffer(gl, width, height);
+    fbo.enableTexture(texture);
+
+    fbo.unbind();
+
+    return fbo;
+};
+
 module.exports = Framebuffer;

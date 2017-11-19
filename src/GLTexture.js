@@ -105,6 +105,7 @@ Texture.prototype.upload = function(source)
 };
 
 var FLOATING_POINT_AVAILABLE = false;
+var HALF_FLOATING_POINT_AVAILABLE = false;
 
 /**
  * Use a data source and uploads this texture to the GPU
@@ -132,6 +133,24 @@ Texture.prototype.uploadData = function(data, width, height)
 			else
 			{
 				throw new Error('floating point textures not available');
+			}
+		}
+
+		this.type = gl.FLOAT;
+	}
+	else if(data instanceof Uint16Array)
+	{
+		if(!HALF_FLOATING_POINT_AVAILABLE)
+		{
+			var ext = gl.getExtension("OES_texture_half_float");
+
+			if(ext)
+			{
+				HALF_FLOATING_POINT_AVAILABLE = true;
+			}
+			else
+			{
+				throw new Error('half floating point textures not available');
 			}
 		}
 
