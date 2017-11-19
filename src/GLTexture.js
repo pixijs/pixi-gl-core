@@ -106,6 +106,7 @@ Texture.prototype.upload = function(source)
 
 var FLOATING_POINT_AVAILABLE = false;
 var HALF_FLOATING_POINT_AVAILABLE = false;
+var HALF_FLOAT = 0;
 
 /**
  * Use a data source and uploads this texture to the GPU
@@ -147,6 +148,7 @@ Texture.prototype.uploadData = function(data, width, height)
 			if(ext)
 			{
 				HALF_FLOATING_POINT_AVAILABLE = true;
+				HALF_FLOAT = ext.HALF_FLOAT_OES;
 			}
 			else
 			{
@@ -154,7 +156,7 @@ Texture.prototype.uploadData = function(data, width, height)
 			}
 		}
 
-		this.type = gl.FLOAT;
+		this.type = HALF_FLOAT;
 	}
 	else
 	{
