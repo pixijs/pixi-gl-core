@@ -92,12 +92,11 @@ VertexArrayObject.prototype.bind = function()
         {
             this.dirty = false;
             this.activate();
-        } else
+            return;
+        }
+        if (this.indexBuffer)
         {
-            if (this.indexBuffer)
-            {
-                this.indexBuffer.bind();
-            }
+            this.indexBuffer.bind();
         }
     }
     else
