@@ -92,7 +92,7 @@ VertexArrayObject.prototype.bind = function()
         {
             this.dirty = false;
             this.activate();
-            return;
+            return this;
         }
         if (this.indexBuffer)
         {
@@ -101,7 +101,6 @@ VertexArrayObject.prototype.bind = function()
     }
     else
     {
-
         this.activate();
     }
 
