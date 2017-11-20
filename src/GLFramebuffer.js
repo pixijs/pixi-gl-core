@@ -223,6 +223,14 @@ Framebuffer.createFloat32 = function(gl, width, height, data)
     return fbo;
 };
 
+/**
+ * Creates a frame buffer with a texture containing the given data
+ * @static
+ * @param gl {WebGLRenderingContext} The current WebGL rendering context
+ * @param width {Number} the width of the drawing area of the frame buffer
+ * @param height {Number} the height of the drawing area of the frame buffer
+ * @param data {ArrayBuffer| SharedArrayBuffer|ArrayBufferView} an array of data
+ */
 Framebuffer.createHalfFloat = function(gl, width, height, data)
 {
     var ext = gl.getExtension('OES_texture_half_float');
