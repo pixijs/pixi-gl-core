@@ -223,4 +223,46 @@ Framebuffer.createFloat32 = function(gl, width, height, data)
     return fbo;
 };
 
+/**
+ * Creates a frame buffer with a texture containing the given data
+ * @static
+ * @param gl {WebGLRenderingContext} The current WebGL rendering context
+ * @param width {Number} the width of the drawing area of the frame buffer
+ * @param height {Number} the height of the drawing area of the frame buffer
+ * @param data {ArrayBuffer| SharedArrayBuffer|ArrayBufferView} an array of data
+ */
+Framebuffer.createHalfFloat = function(gl, width, height, data)
+{
+    var ext = gl.getExtension('OES_texture_half_float');
+
+    if (!ext)
+    {
+        throw new Error('half floating point textures not available');
+    }
+
+    // create a new texture..
+    var texture = new Texture(gl);
+
+    texture.bind();
+
+    texture.type = ext.HALF_FLOAT_OES;
+    texture.fromat = gl.RGBA;
+    texture.width = width;
+    texture.height = height;
+
+    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, texture.premultiplyAlpha);
+    gl.texImage2D(gl.TEXTURE_2D, 0, texture.format, width, height, 0, texture.format, texture.type, data || null);
+
+    texture.enableNearestScaling();
+    texture.enableWrapClamp();
+
+    // now create the framebuffer object and attach the texture to it.
+    var fbo = new Framebuffer(gl, width, height);
+    fbo.enableTexture(texture);
+
+    fbo.unbind();
+
+    return fbo;
+};
+
 module.exports = Framebuffer;
