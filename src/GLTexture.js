@@ -70,7 +70,12 @@ var Texture = function(gl, width, height, format, type)
 	 */
 	this.type = type || gl.UNSIGNED_BYTE;
 
-
+  /**
+   * Whether this texture is currently bound.
+   *
+   * @member {Boolean}
+   */
+  this.isBound = false;
 };
 
 /**
@@ -169,14 +174,19 @@ Texture.prototype.uploadData = function(data, width, height)
  */
 Texture.prototype.bind = function(location)
 {
-	var gl = this.gl;
+  if (!this.isBound)
+  {
+    var gl = this.gl;
 
-	if(location !== undefined)
-	{
-		gl.activeTexture(gl.TEXTURE0 + location);
-	}
+    if(location !== undefined)
+    {
+       gl.activeTexture(gl.TEXTURE0 + location);
+    }
 
-	gl.bindTexture(gl.TEXTURE_2D, this.texture);
+    gl.bindTexture(gl.TEXTURE_2D, this.texture);
+
+    this.isBound = true;
+  }
 };
 
 /**
@@ -184,8 +194,14 @@ Texture.prototype.bind = function(location)
  */
 Texture.prototype.unbind = function()
 {
-	var gl = this.gl;
-	gl.bindTexture(gl.TEXTURE_2D, null);
+  if (this.isBound)
+  {
+	  var gl = this.gl;
+
+	  gl.bindTexture(gl.TEXTURE_2D, null);
+
+    this.isBound = false;
+  }
 };
 
 /**
