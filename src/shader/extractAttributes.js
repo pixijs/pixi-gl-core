@@ -19,12 +19,14 @@ var extractAttributes = function(gl, program)
     for (var i = 0; i < totalAttributes; i++)
     {
         var attribData = gl.getActiveAttrib(program, i);
+        var name = attribData.name.replace(/\[.*?\]/, "");
         var type = mapType(gl, attribData.type);
+        var array = attribData.name.indexOf('[') > 0;
 
-        attributes[attribData.name] = {
+        attributes[name] = {
             type:type,
             size:mapSize(type),
-            location:gl.getAttribLocation(program, attribData.name),
+            location:gl.getAttribLocation(program, name),
             //TODO - make an attribute object
             pointer: pointer
         };
