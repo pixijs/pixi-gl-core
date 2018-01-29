@@ -24,9 +24,10 @@ var extractAttributes = function(gl, program)
         var array = attribData.name.indexOf('[') > 0;
 
         attributes[name] = {
-            type:type,
-            size:mapSize(type),
-            location:gl.getAttribLocation(program, name),
+            type: type,
+            size: mapSize(type),
+            array: array,
+            location: gl.getAttribLocation(program, name),
             //TODO - make an attribute object
             pointer: pointer
         };
