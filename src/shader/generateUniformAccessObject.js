@@ -67,9 +67,7 @@ var GLSL_SINGLE_SETTERS = {
     mat3: function setSingleMat3(gl, location, value) { gl.uniformMatrix3fv(location, false, value); },
     mat4: function setSingleMat4(gl, location, value) { gl.uniformMatrix4fv(location, false, value); },
 
-    sampler2D: function setSingleSampler2D(gl, location, value) {
-        gl.uniform1i(location, Array.isArray(value) ? value[0] : value);
-    },
+    sampler2D: function setSingleSampler2D(gl, location, value) { gl.uniform1i(location, value); },
 };
 
 var GLSL_ARRAY_SETTERS = {
@@ -93,14 +91,14 @@ function generateSetter(name, uniform)
     return function(value) {
         this.data[name].value = value;
         var location = this.data[name].location;
-        if (uniform.size === 1)
-        {
-            GLSL_SINGLE_SETTERS[uniform.type](this.gl, location, value);
-        }
-        else
+        if (uniform.array)
         {
             // glslSetArray(gl, location, type, value) {
             GLSL_ARRAY_SETTERS[uniform.type](this.gl, location, value);
+        }
+        else
+        {
+            GLSL_SINGLE_SETTERS[uniform.type](this.gl, location, value);
         }
     };
 }
