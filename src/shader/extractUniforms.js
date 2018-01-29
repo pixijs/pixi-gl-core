@@ -24,7 +24,7 @@ var extractUniforms = function(gl, program)
 
     	uniforms[name] = {
     		type: type,
-            size: uniformData.size,
+    		size: uniformData.size,
     		array: array,
     		location: gl.getUniformLocation(program, name),
     		value: defaultValue(type, uniformData.size)
