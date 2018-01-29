@@ -210,7 +210,7 @@ Framebuffer.createRGBA = function(gl, width, height, data)
 Framebuffer.createFloat32 = function(gl, width, height, data)
 {
     // create a new texture..
-    var texture = new Texture.fromData(gl, data, width, height);
+    var texture = Texture.fromData(gl, data, width, height);
     texture.enableNearestScaling();
     texture.enableWrapClamp();
 
