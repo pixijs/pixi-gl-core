@@ -20,12 +20,14 @@ var extractUniforms = function(gl, program)
     	var uniformData = gl.getActiveUniform(program, i);
     	var name = uniformData.name.replace(/\[.*?\]/, "");
         var type = mapType(gl, uniformData.type );
+        var array = uniformData.name.indexOf('[') > 0;
 
     	uniforms[name] = {
-    		type:type,
-    		size:uniformData.size,
-    		location:gl.getUniformLocation(program, name),
-    		value:defaultValue(type, uniformData.size)
+    		type: type,
+    		size: uniformData.size,
+    		array: array,
+    		location: gl.getUniformLocation(program, name),
+    		value: defaultValue(type, uniformData.size)
     	};
     }
 
