@@ -24,9 +24,9 @@ var extractAttributes = function(gl, program)
         attributes[attribData.name] = {
             type:type,
             size:mapSize(type),
-            location:gl.getAttribLocation(program, name),
+            location:gl.getAttribLocation(program, attribData.name),
             //TODO - make an attribute object
-            pointer:pointer
+            pointer: pointer
         };
     }
 
