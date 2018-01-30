@@ -117,5 +117,4 @@ function getUniformGroup(nameTokens, uniform)
     return cur;
 }
 
-
 module.exports = generateUniformAccessObject;
