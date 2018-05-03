@@ -2,29 +2,33 @@
 var mapType = require('./mapType');
 var mapSize = require('./mapSize');
 
+var gl;
+
 /**
  * Extracts the attributes
  * @class
  * @memberof PIXI.glCore.shader
- * @param gl {WebGLRenderingContext} The current WebGL rendering context
+ * @param _gl {WebGLRenderingContext} The current WebGL rendering context
  * @param program {WebGLProgram} The shader program to get the attributes from
  * @return attributes {Object}
  */
-var extractAttributes = function(gl, program)
+var extractAttributes = function(_gl, program)
 {
+    gl = _gl;
+
     var attributes = {};
 
-    var totalAttributes = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES);
+    var totalAttributes = _gl.getProgramParameter(program, _gl.ACTIVE_ATTRIBUTES);
 
     for (var i = 0; i < totalAttributes; i++)
     {
-        var attribData = gl.getActiveAttrib(program, i);
-        var type = mapType(gl, attribData.type);
+        var attribData = _gl.getActiveAttrib(program, i);
+        var type = mapType(_gl, attribData.type);
 
         attributes[attribData.name] = {
             type:type,
             size:mapSize(type),
-            location:gl.getAttribLocation(program, attribData.name),
+            location:_gl.getAttribLocation(program, attribData.name),
             //TODO - make an attribute object
             pointer: pointer
         };

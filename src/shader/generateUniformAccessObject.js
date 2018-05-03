@@ -91,14 +91,14 @@ function generateSetter(name, uniform)
     return function(value) {
         this.data[name].value = value;
         var location = this.data[name].location;
-        if (uniform.size === 1)
-        {
-            GLSL_SINGLE_SETTERS[uniform.type](this.gl, location, value);
-        }
-        else
+        if (uniform.array)
         {
             // glslSetArray(gl, location, type, value) {
             GLSL_ARRAY_SETTERS[uniform.type](this.gl, location, value);
+        }
+        else
+        {
+            GLSL_SINGLE_SETTERS[uniform.type](this.gl, location, value);
         }
     };
 }
@@ -116,6 +116,5 @@ function getUniformGroup(nameTokens, uniform)
 
     return cur;
 }
-
 
 module.exports = generateUniformAccessObject;
