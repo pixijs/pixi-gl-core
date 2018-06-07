@@ -160,7 +160,7 @@ Framebuffer.prototype.destroy = function()
     var gl = this.gl;
 
     //TODO
-    if(this.texture)
+    if(this.texture && gl.isTexture(this.texture.texture))
     {
         this.texture.destroy();
     }
